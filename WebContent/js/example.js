@@ -1,14 +1,19 @@
 (function ($) {
 	"use strict";
 
-	var ExampleView = Backbone.View.extend({});
+	var ExampleView = Backbone.View.extend({
+		events : {
+			"click #add" : "addItem"
+		},
+		addItem : function (e) {
+			$("input[name=text1]", this.$el).val("test");
+		}
+	});
 
 	$(function () {
-		var view = new ExampleView({
-			el: $("#example")
+		new ExampleView({
+			el : $("#example")
 		});
-
-		$("input[name=text1]", view.$el).val("test");
 
 //		var obj = new Backbone.Model();
 //		var obj2 = new Backbone.Model({name: "Kenichiro", age: 30});
