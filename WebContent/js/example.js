@@ -1,3 +1,4 @@
+/*global jQuery, Backbone */
 (function ($) {
 	"use strict";
 
