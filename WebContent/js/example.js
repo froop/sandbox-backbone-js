@@ -72,19 +72,19 @@
 			this.$input.val(this.model.get("text1"));
 			this.$count.text(this.model.get("count"));
 		},
-		addItem: function (e) {
+		addItemView: function (item) {
+			var view = new ItemView({
+				model: item
+			});
+			this.$list.append(view.$el);
+		},
+		addItem: function () {
 			var value = this.$input.val();
 			this.model.setText1(value);
 			this.model.countUp();
 			this.items.create({
 				text1: value
 			});
-		},
-		addItemView: function (item) {
-			var view = new ItemView({
-				model: item
-			});
-			this.$list.append(view.$el);
 		},
 		clearItems: function () {
 			this.items.clearAll();
