@@ -1,7 +1,7 @@
 (function ($) {
 	"use strict";
 
-	var ExampleView = Backbone.View.extend({
+	var AppView = Backbone.View.extend({
 		events : {
 			"click #add" : "addItem"
 		},
@@ -11,7 +11,7 @@
 	});
 
 	$(function () {
-		new ExampleView({
+		new AppView({
 			el : "#example"
 		});
 
