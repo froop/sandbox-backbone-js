@@ -19,7 +19,8 @@
 		 * @returns {Boolean} true is valid
 		 */
 		setText1: function (value) {
-			return !!this.set("text1", value, {validate: true});
+			var res = this.set("text1", value, {validate: true});
+			return Boolean(res);
 		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
