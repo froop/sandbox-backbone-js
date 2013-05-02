@@ -27,7 +27,10 @@
 			this.render();
 		},
 		render: function () {
-			this.$el.append($("<span>" + this.model.get("text1") + "<span>"));//TODO
+			var $item = $("#item-template .item-content").clone();
+			$(".text1", $item).text(this.model.get("text1"));
+			$(".time", $item).text(this.model.get("time"));
+			this.$el.append($item);
 		}
 	});
 
@@ -53,7 +56,7 @@
 			this.model.countUp();
 			this.items.add({
 				text1: this.$input.val(),
-				date: new Date()
+				time: new Date()
 			});
 		},
 		addItem: function (item) {
