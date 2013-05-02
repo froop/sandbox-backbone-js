@@ -52,10 +52,11 @@
 			this.$count.text(this.model.get("count"));
 		},
 		addCount: function (e) {
-			this.model.set("text1", this.$input.val());
+			var text1 = this.$input.val();
+			this.model.set("text1", text1);
 			this.model.countUp();
 			this.items.add({
-				text1: this.$input.val(),
+				text1: text1,
 				time: new Date()
 			});
 		},
