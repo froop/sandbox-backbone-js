@@ -84,14 +84,12 @@
 			this.$list.append(view.$el);
 		},
 		addItem: function () {
-			var value = this.$input.val();
-			if (!this.model.setText1(value)) {
+			if (!this.model.setText1(this.$input.val())) {
 				return;
 			}
-
 			this.model.countUp();
 			this.items.create({
-				text1: value
+				text1: this.model.get("text1")
 			});
 		},
 		clearItems: function () {
