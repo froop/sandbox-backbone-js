@@ -1,7 +1,7 @@
 (function ($) {
 	"use strict";
 
-	var Item = Backbone.Model.extend({
+	var Editor = Backbone.Model.extend({
 		defaults: {
 			"text1": "default1"
 		},
@@ -13,7 +13,7 @@
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"click #add" : "addItem"
+			"click #add" : "addCount"
 		},
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
@@ -23,7 +23,7 @@
 		render: function () {
 			this.$input.val(this.model.get("text1"));
 		},
-		addItem: function (e) {
+		addCount: function (e) {
 			this.model.set({
 				"text1": this.$input.val() + "."
 			});
@@ -33,7 +33,7 @@
 	$(function () {
 		new AppView({
 			el: "#example",
-			model: new Item()
+			model: new Editor()
 		});
 
 //		var obj = new Backbone.Model();
