@@ -63,11 +63,11 @@
 			this.$count.text(this.model.get("count"));
 		},
 		addItem: function (e) {
-			var text1 = this.$input.val();
-			this.model.set("text1", text1 + ".");
+			var value = this.$input.val();
+			this.model.set("text1", value + ".");
 			this.model.countUp();
 			this.items.create({
-				text1: text1
+				text1: value
 			});
 		},
 		addItemView: function (item) {
