@@ -12,7 +12,7 @@
 
 	$(function () {
 		new ExampleView({
-			el : $("#example")
+			el : "#example"
 		});
 
 //		var obj = new Backbone.Model();
