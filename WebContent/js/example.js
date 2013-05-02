@@ -97,13 +97,11 @@
 		}
 	});
 
-	$(function () {
-		var editor = new Editor();
-		var items = new Items();
-		new AppView({
-			el: "#example",
-			model: editor,
-			items : items
-		});
+	var editor = new Editor();
+	var items = new Items();
+	new AppView({
+		el: "#example",
+		model: editor,
+		items : items
 	});
 })(jQuery);
