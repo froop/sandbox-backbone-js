@@ -17,7 +17,8 @@
 
 	var Item = Backbone.Model.extend({});
 	var Items = Backbone.Collection.extend({
-		model: Item
+		model: Item,
+		localStorage: new Backbone.LocalStorage("example-items")
 	});
 
 	var ItemView = Backbone.View.extend({
@@ -54,7 +55,7 @@
 			var text1 = this.$input.val();
 			this.model.set("text1", text1 + ".");
 			this.model.countUp();
-			this.items.add({
+			this.items.create({
 				text1: text1
 			});
 		},
