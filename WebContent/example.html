@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Backbone.js sandbox</title>
+	<link rel="stylesheet" href="css/example.css">
 	<script defer src="js/lib/jquery.js"></script>
 	<script defer src="js/lib/underscore.js"></script>
 	<script defer src="js/lib/backbone.js"></script>
@@ -14,7 +15,18 @@
 <div id="example">
 	<input name="text1">
 	<button id="add">add</button>
+	<span id="count"></span>
+
+	<ul id="navi">
+		<li><button id="clear">clear</button></li>
+	</ul>
 	<ol id="list1"></ol>
+
+	<div id="item-template" class="template">
+		<div class="item-content">
+			<span class="text1"></span>
+		</div>
+	</div>
 </div>
 
 </body>
