@@ -29,7 +29,6 @@
 		render: function () {
 			var $item = $("#item-template .item-content").clone();
 			$(".text1", $item).text(this.model.get("text1"));
-			$(".time", $item).text(this.model.get("time"));
 			this.$el.append($item);
 		}
 	});
@@ -56,8 +55,7 @@
 			this.model.set("text1", text1 + ".");
 			this.model.countUp();
 			this.items.add({
-				text1: text1,
-				time: new Date()
+				text1: text1
 			});
 		},
 		addItem: function (item) {
