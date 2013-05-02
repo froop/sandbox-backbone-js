@@ -4,7 +4,7 @@
 	var Editor = Backbone.Model.extend({
 		defaults: {
 			text1: "default1",
-			count: 1
+			count: 0
 		},
 		initialize: function (attrs, options) {
 		},
