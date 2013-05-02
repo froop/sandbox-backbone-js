@@ -43,8 +43,11 @@
 			this.$count = this.$("#count");
 			this.$items = this.$("#list1");
 			this.items = options.items;
+
 			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.items, "add", this.addItem);
+
+			this.items.fetch();
 			this.render();
 		},
 		render: function () {
