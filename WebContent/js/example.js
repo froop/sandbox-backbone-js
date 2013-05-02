@@ -43,7 +43,7 @@
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"click #add": "addCount",
+			"click #add": "addItem",
 			"click #clear": "clearItems"
 		},
 		initialize: function (options) {
@@ -62,7 +62,7 @@
 			this.$input.val(this.model.get("text1"));
 			this.$count.text(this.model.get("count"));
 		},
-		addCount: function (e) {
+		addItem: function (e) {
 			var text1 = this.$input.val();
 			this.model.set("text1", text1 + ".");
 			this.model.countUp();
