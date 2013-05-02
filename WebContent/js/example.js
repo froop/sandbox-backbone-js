@@ -1,18 +1,39 @@
 (function ($) {
 	"use strict";
 
+	var Item = Backbone.Model.extend({
+		defaults: {
+			"text1": "default1"
+		},
+		initialize: function (attrs, options) {
+		},
+		validate: function (attrs) {
+		}
+	});
+
 	var AppView = Backbone.View.extend({
-		events : {
+		events: {
 			"click #add" : "addItem"
 		},
-		addItem : function (e) {
-			this.$("input[name=text1]").val("test");
+		initialize: function (options) {
+			_.bindAll(this, "render");
+			this.model.bind("change", this.render);
+			this.render();
+		},
+		render: function () {
+			this.$("input[name=text1]").val(this.model.get("text1"));
+		},
+		addItem: function (e) {
+			this.model.set({
+				"text1": this.$("input[name=text1]").val()
+			});
 		}
 	});
 
 	$(function () {
 		new AppView({
-			el : "#example"
+			el: "#example",
+			model: new Item()
 		});
 
 //		var obj = new Backbone.Model();
