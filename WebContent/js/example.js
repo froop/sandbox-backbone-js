@@ -53,7 +53,7 @@
 			this.items = options.items;
 
 			this.listenTo(this.model, "change", this.render);
-			this.listenTo(this.items, "add", this.addItem);
+			this.listenTo(this.items, "add", this.addItemView);
 
 			this.items.fetch();
 			this.render();
@@ -70,7 +70,7 @@
 				text1: text1
 			});
 		},
-		addItem: function (item) {
+		addItemView: function (item) {
 			var view = new ItemView({
 				model: item
 			});
