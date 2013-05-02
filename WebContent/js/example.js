@@ -49,7 +49,7 @@
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
 			this.$count = this.$("#count");
-			this.$items = this.$("#list1");
+			this.$list = this.$("#list1");
 			this.items = options.items;
 
 			this.listenTo(this.model, "change", this.render);
@@ -74,7 +74,7 @@
 			var view = new ItemView({
 				model: item
 			});
-			this.$items.append(view.$el);
+			this.$list.append(view.$el);
 		},
 		clearItems: function () {
 			this.items.clearAll();
@@ -82,10 +82,12 @@
 	});
 
 	$(function () {
+		var editor = new Editor();
+		var items = new Items();
 		new AppView({
 			el: "#example",
-			model: new Editor(),
-			items : new Items()
+			model: editor,
+			items : items
 		});
 	});
 })(jQuery);
