@@ -20,6 +20,17 @@
 		model: Item
 	});
 
+	var ItemView = Backbone.View.extend({
+		tagName: "li",
+		initialize: function (options) {
+//			this.model.bind("change", this.render, this);
+			this.render();
+		},
+		render: function () {
+			this.$el.append($("<span>" + this.model.get("text1") + "<span>"));//TODO
+		}
+	});
+
 	var AppView = Backbone.View.extend({
 		events: {
 			"click #add": "addCount"
@@ -30,12 +41,12 @@
 			this.$items = this.$("#list1");
 			this.items = options.items;
 			this.model.bind("change", this.render, this);
+			this.items.bind("add", this.addItem, this);
 			this.render();
 		},
 		render: function () {
 			this.$input.val(this.model.get("text1"));
 			this.$count.text(this.model.get("count"));
-			this.$items.append("<li>" + this.model.get("text1") + "</li>");//TODO
 		},
 		addCount: function (e) {
 			this.model.set("text1", this.$input.val());
@@ -44,15 +55,20 @@
 				text1: this.$input.val(),
 				date: new Date()
 			});
+		},
+		addItem: function (item) {
+			var view = new ItemView({
+				model: item
+			});
+			this.$items.append(view.$el);
 		}
 	});
 
 	$(function () {
-		var items = new Items();
 		new AppView({
 			el: "#example",
 			model: new Editor(),
-			items : items
+			items : new Items()
 		});
 
 //		var obj = new Backbone.Model();
