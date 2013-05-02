@@ -14,8 +14,12 @@
 				return "required";
 			}
 		},
+		/**
+		 * @param value {String}
+		 * @returns {Boolean} true is error
+		 */
 		setText1: function (value) {
-			this.set("text1", value);
+			return this.set("text1", value, {validate: true});
 		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
@@ -80,8 +84,7 @@
 		},
 		addItem: function () {
 			var value = this.$input.val();
-			this.model.setText1(value);
-			if (!this.model.isValid()) {
+			if (!this.model.setText1(value)) {
 				return;
 			}
 
