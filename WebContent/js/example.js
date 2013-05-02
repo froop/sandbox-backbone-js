@@ -4,7 +4,7 @@
 	var Editor = Backbone.Model.extend({
 		defaults: {
 			text1: "default1",
-			count: 0
+			count: 1
 		},
 		initialize: function (attrs, options) {
 		},
@@ -15,6 +15,11 @@
 		}
 	});
 
+	var Item = Backbone.Model.extend({});
+	var Items = Backbone.Collection.extend({
+		model: Item
+	});
+
 	var AppView = Backbone.View.extend({
 		events: {
 			"click #add": "addCount"
@@ -22,23 +27,32 @@
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
 			this.$count = this.$("#count");
+			this.$items = this.$("#list1");
+			this.items = options.items;
 			this.model.bind("change", this.render, this);
 			this.render();
 		},
 		render: function () {
 			this.$input.val(this.model.get("text1"));
 			this.$count.text(this.model.get("count"));
+			this.$items.append("<li>" + this.model.get("text1") + "</li>");//TODO
 		},
 		addCount: function (e) {
 			this.model.set("text1", this.$input.val());
 			this.model.countUp();
+			this.items.add({
+				text1: this.$input.val(),
+				date: new Date()
+			});
 		}
 	});
 
 	$(function () {
+		var items = new Items();
 		new AppView({
 			el: "#example",
-			model: new Editor()
+			model: new Editor(),
+			items : items
 		});
 
 //		var obj = new Backbone.Model();
