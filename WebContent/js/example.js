@@ -10,7 +10,7 @@
 		initialize: function (attrs, options) {
 		},
 		validate: function (attrs) {
-			if (attrs.text1 === "") {
+			if (_.isEmpty(attrs.text1)) {
 				return "required";
 			}
 			if (_.isEmpty(this.changedAttributes(attrs))) {
