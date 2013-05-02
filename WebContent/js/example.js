@@ -6,7 +6,7 @@
 			"click #add" : "addItem"
 		},
 		addItem : function (e) {
-			$("input[name=text1]", this.$el).val("test");
+			this.$("input[name=text1]").val("test");
 		}
 	});
 
