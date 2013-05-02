@@ -3,30 +3,35 @@
 
 	var Editor = Backbone.Model.extend({
 		defaults: {
-			"text1": "default1"
+			text1: "default1",
+			count: 0
 		},
 		initialize: function (attrs, options) {
 		},
 		validate: function (attrs) {
+		},
+		countUp: function () {
+			this.set("count", this.get("count") + 1);
 		}
 	});
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"click #add" : "addCount"
+			"click #add": "addCount"
 		},
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
+			this.$count = this.$("#count");
 			this.model.bind("change", this.render, this);
 			this.render();
 		},
 		render: function () {
 			this.$input.val(this.model.get("text1"));
+			this.$count.text(this.model.get("count"));
 		},
 		addCount: function (e) {
-			this.model.set({
-				"text1": this.$input.val() + "."
-			});
+			this.model.set("text1", this.$input.val());
+			this.model.countUp();
 		}
 	});
 
