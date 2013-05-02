@@ -18,13 +18,20 @@
 	var Item = Backbone.Model.extend({});
 	var Items = Backbone.Collection.extend({
 		model: Item,
-		localStorage: new Backbone.LocalStorage("example-items")
+		localStorage: new Backbone.LocalStorage("example-items"),
+		clearAll: function () {
+			var idx;
+			for (idx = this.models.length - 1; idx >= 0; idx--) {
+				this.models[idx].destroy();
+			}
+		}
 	});
 
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
 		initialize: function (options) {
 //			this.listenTo(this.model, "change", this.render);
+			this.listenTo(this.model, 'destroy', this.remove);
 			this.render();
 		},
 		render: function () {
@@ -36,7 +43,8 @@
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"click #add": "addCount"
+			"click #add": "addCount",
+			"click #clear": "clearItems"
 		},
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
@@ -67,6 +75,9 @@
 				model: item
 			});
 			this.$items.append(view.$el);
+		},
+		clearItems: function () {
+			this.items.clearAll();
 		}
 	});
 
