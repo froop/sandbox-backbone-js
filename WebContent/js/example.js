@@ -23,7 +23,7 @@
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
 		initialize: function (options) {
-//			this.model.bind("change", this.render, this);
+//			this.listenTo(this.model, "change", this.render);
 			this.render();
 		},
 		render: function () {
@@ -40,8 +40,8 @@
 			this.$count = this.$("#count");
 			this.$items = this.$("#list1");
 			this.items = options.items;
-			this.model.bind("change", this.render, this);
-			this.items.bind("add", this.addItem, this);
+			this.listenTo(this.model, "change", this.render);
+			this.listenTo(this.items, "add", this.addItem);
 			this.render();
 		},
 		render: function () {
