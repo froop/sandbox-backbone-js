@@ -14,6 +14,9 @@
 				return "required";
 			}
 		},
+		setText1: function (value) {
+			this.set("text1", value, {validate: true});
+		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
 		}
@@ -71,7 +74,7 @@
 		},
 		addItem: function (e) {
 			var value = this.$input.val();
-			this.model.set("text1", value, {validate: true});
+			this.model.setText1(value);
 			this.model.countUp();
 			this.items.create({
 				text1: value
