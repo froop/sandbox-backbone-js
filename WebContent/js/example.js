@@ -16,16 +16,17 @@
 			"click #add" : "addItem"
 		},
 		initialize: function (options) {
+			this.$input = this.$("input[name=text1]");
 			_.bindAll(this, "render");
 			this.model.bind("change", this.render);
 			this.render();
 		},
 		render: function () {
-			this.$("input[name=text1]").val(this.model.get("text1"));
+			this.$input.val(this.model.get("text1"));
 		},
 		addItem: function (e) {
 			this.model.set({
-				"text1": this.$("input[name=text1]").val()
+				"text1": this.$input.val() + "."
 			});
 		}
 	});
