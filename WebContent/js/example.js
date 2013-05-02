@@ -17,8 +17,7 @@
 		},
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
-			_.bindAll(this, "render");
-			this.model.bind("change", this.render);
+			this.model.bind("change", this.render, this);
 			this.render();
 		},
 		render: function () {
