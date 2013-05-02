@@ -10,6 +10,9 @@
 		initialize: function (attrs, options) {
 		},
 		validate: function (attrs) {
+			if (attrs.text1 === "") {
+				return "required";
+			}
 		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
@@ -54,6 +57,9 @@
 			this.items = options.items;
 
 			this.listenTo(this.model, "change", this.render);
+			this.listenTo(this.model, "invalid", function (model, error) {
+				alert(error);
+			});
 			this.listenTo(this.items, "add", this.addItemView);
 
 			this.items.fetch();
@@ -65,7 +71,7 @@
 		},
 		addItem: function (e) {
 			var value = this.$input.val();
-			this.model.set("text1", value + ".");
+			this.model.set("text1", value, {validate: true});
 			this.model.countUp();
 			this.items.create({
 				text1: value
