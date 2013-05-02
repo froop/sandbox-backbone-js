@@ -1,4 +1,4 @@
-/*global jQuery, Backbone */
+/*global jQuery, Backbone, _ */
 (function ($) {
 	"use strict";
 
@@ -12,6 +12,9 @@
 		validate: function (attrs) {
 			if (attrs.text1 === "") {
 				return "required";
+			}
+			if (_.isEmpty(this.changedAttributes(attrs))) {
+				return "not change";
 			}
 		},
 		/**
