@@ -4,7 +4,7 @@
 
 	var Editor = Backbone.Model.extend({
 		defaults: {
-			text1: "default1",
+			text1: "",
 			count: 0
 		},
 		initialize: function (attrs, options) {
@@ -15,7 +15,7 @@
 			}
 		},
 		setText1: function (value) {
-			this.set("text1", value, {validate: true});
+			this.set("text1", value);
 		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
@@ -81,6 +81,10 @@
 		addItem: function () {
 			var value = this.$input.val();
 			this.model.setText1(value);
+			if (!this.model.isValid()) {
+				return;
+			}
+
 			this.model.countUp();
 			this.items.create({
 				text1: value
