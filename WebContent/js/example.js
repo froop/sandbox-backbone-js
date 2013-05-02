@@ -53,6 +53,7 @@
 			var $item = $("#item-template .item-content").clone();
 			$(".text1", $item).text(this.model.get("text1"));
 			this.$el.append($item);
+			return this;
 		}
 	});
 
@@ -79,6 +80,7 @@
 		render: function () {
 			this.$input.val(this.model.get("text1"));
 			this.$count.text(this.model.get("count"));
+			return this;
 		},
 		addItemView: function (item) {
 			var view = new ItemView({
