@@ -16,10 +16,10 @@
 		},
 		/**
 		 * @param value {String}
-		 * @returns {Boolean} true is error
+		 * @returns {Boolean} true is valid
 		 */
 		setText1: function (value) {
-			return this.set("text1", value, {validate: true});
+			return !!this.set("text1", value, {validate: true});
 		},
 		countUp: function () {
 			this.set("count", this.get("count") + 1);
