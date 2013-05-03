@@ -17,10 +17,6 @@
 				return "not change";
 			}
 		},
-		/**
-		 * @param value {String}
-		 * @returns {Boolean} true is valid
-		 */
 		setText1: function (value) {
 			var res = this.set("text1", value, {validate: true});
 
@@ -28,10 +24,9 @@
 				self.set("count", self.get("count") + 1, { silent: true });
 			}
 
-			if (Boolean(res)) {
+			if (res) {
 				countUp(this);
 			}
-			return Boolean(res);
 		}
 	});
 
