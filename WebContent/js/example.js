@@ -25,7 +25,7 @@
 			var res = this.set("text1", value, {validate: true});
 
 			function countUp(self) {
-				self.set("count", self.get("count") + 1);
+				self.set("count", self.get("count") + 1, { silent: true });
 			}
 
 			if (Boolean(res)) {
@@ -99,6 +99,9 @@
 			});
 
 			this.listenTo(this.model, "change", this.render);
+			this.listenTo(this.model, "change", function () {
+				this.itemsView.addItem(this.model.toJSON());
+			});
 			this.listenTo(this.model, "invalid", function (model, error) {
 				alert(error);
 			});
@@ -111,10 +114,7 @@
 			return this;
 		},
 		addItem: function () {
-			if (!this.model.setText1(this.$input.val())) {
-				return;
-			}
-			this.itemsView.addItem(this.model.toJSON());
+			this.model.setText1(this.$input.val());
 		},
 		clearItems: function () {
 			this.itemsView.clearItems();
