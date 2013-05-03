@@ -23,10 +23,15 @@
 		 */
 		setText1: function (value) {
 			var res = this.set("text1", value, {validate: true});
+
+			function countUp(self) {
+				self.set("count", self.get("count") + 1);
+			}
+
+			if (Boolean(res)) {
+				countUp(this);
+			}
 			return Boolean(res);
-		},
-		countUp: function () {
-			this.set("count", this.get("count") + 1);
 		}
 	});
 
@@ -109,7 +114,6 @@
 			if (!this.model.setText1(this.$input.val())) {
 				return;
 			}
-			this.model.countUp();
 			this.itemsView.addItem(this.model.toJSON());
 		},
 		clearItems: function () {
