@@ -57,6 +57,30 @@
 		}
 	});
 
+	var ItemsView = Backbone.View.extend({
+		el: "#list1",
+		initialize: function (options) {
+			this.listenTo(this.collection, "add", this.addItemView);
+			this.collection.fetch();
+			this.render();
+		},
+		render: function () {
+			return this;
+		},
+		addItemView: function (item) {
+			var view = new ItemView({
+				model: item
+			});
+			this.$el.append(view.$el);
+		},
+		addItem: function (values) {
+			this.collection.create(values);
+		},
+		clearItems: function () {
+			this.collection.clearAll();
+		}
+	});
+
 	var AppView = Backbone.View.extend({
 		events: {
 			"click #add": "addItem",
@@ -65,16 +89,15 @@
 		initialize: function (options) {
 			this.$input = this.$("input[name=text1]");
 			this.$count = this.$("#count");
-			this.$list = this.$("#list1");
-			this.items = options.items;
+			this.itemsView = new ItemsView({
+				collection: options.items
+			});
 
 			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, "invalid", function (model, error) {
 				alert(error);
 			});
-			this.listenTo(this.items, "add", this.addItemView);
 
-			this.items.fetch();
 			this.render();
 		},
 		render: function () {
@@ -82,23 +105,15 @@
 			this.$count.text(this.model.get("count"));
 			return this;
 		},
-		addItemView: function (item) {
-			var view = new ItemView({
-				model: item
-			});
-			this.$list.append(view.$el);
-		},
 		addItem: function () {
 			if (!this.model.setText1(this.$input.val())) {
 				return;
 			}
 			this.model.countUp();
-			this.items.create({
-				text1: this.model.get("text1")
-			});
+			this.itemsView.addItem(this.model.toJSON());
 		},
 		clearItems: function () {
-			this.items.clearAll();
+			this.itemsView.clearItems();
 		}
 	});
 
