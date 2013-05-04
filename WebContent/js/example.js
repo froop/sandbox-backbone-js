@@ -21,7 +21,7 @@
 			var res = this.set("text1", value, {validate: true});
 
 			function countUp(self) {
-				self.set("count", self.get("count") + 1, { silent: true });
+				self.set("count", self.get("count") + 1);
 			}
 
 			if (res) {
@@ -94,7 +94,7 @@
 			});
 
 			this.listenTo(this.model, "change", this.render);
-			this.listenTo(this.model, "change", function () {
+			this.listenTo(this.model, "change:text1", function () {
 				this.itemsView.addItem(this.model.toJSON());
 			});
 			this.listenTo(this.model, "invalid", function (model, error) {
