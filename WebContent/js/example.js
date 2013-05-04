@@ -55,9 +55,6 @@
 			this.collection.fetch();
 			this.render();
 		},
-		render: function () {
-			return this;
-		},
 		addItemView: function (item) {
 			var view = new ItemView({
 				model: item
