@@ -71,8 +71,8 @@
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"click #add": "addItem",
-			"click #clear": "clearItems"
+			"submit #edit-form": "addItem",
+			"click #clear": "clearItems",
 		},
 		initialize: function (options) {
 			this.count = 0;
@@ -98,8 +98,9 @@
 			this.$count.text(this.count);
 			return this;
 		},
-		addItem: function () {
+		addItem: function (event) {
 			this.model.setText1(this.$input.val());
+			event.preventDefault();
 		},
 		clearItems: function () {
 			this.itemsView.clearItems();
