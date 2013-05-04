@@ -85,10 +85,10 @@
 				collection: options.items
 			});
 
-			this.listenTo(this.model, "change", this.render);
-			this.listenTo(this.model, "change:text1", function () {
+			this.listenTo(this.model, "change", function () {
 				this.itemsView.addItem(this.model.toJSON());
 				this.count += 1;
+				this.render();
 			});
 			this.listenTo(this.model, "invalid", function (model, error) {
 				alert(error);
