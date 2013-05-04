@@ -4,8 +4,7 @@
 
 	var Editor = Backbone.Model.extend({
 		defaults: {
-			text1: "",
-			count: 0
+			text1: ""
 		},
 		initialize: function (attrs, options) {
 		},
@@ -18,15 +17,7 @@
 			}
 		},
 		setText1: function (value) {
-			var res = this.set("text1", value, {validate: true});
-
-			function countUp(self) {
-				self.set("count", self.get("count") + 1);
-			}
-
-			if (res) {
-				countUp(this);
-			}
+			this.set("text1", value, {validate: true});
 		}
 	});
 
@@ -87,6 +78,7 @@
 			"click #clear": "clearItems"
 		},
 		initialize: function (options) {
+			this.count = 0;
 			this.$input = this.$("input[name=text1]");
 			this.$count = this.$("#count");
 			this.itemsView = new ItemsView({
@@ -96,6 +88,7 @@
 			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, "change:text1", function () {
 				this.itemsView.addItem(this.model.toJSON());
+				this.count += 1;
 			});
 			this.listenTo(this.model, "invalid", function (model, error) {
 				alert(error);
@@ -105,7 +98,7 @@
 		},
 		render: function () {
 			this.$input.val(this.model.get("text1"));
-			this.$count.text(this.model.get("count"));
+			this.$count.text(this.count);
 			return this;
 		},
 		addItem: function () {
