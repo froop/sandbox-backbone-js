@@ -20,7 +20,7 @@
 			url: "/example/items"
 		});
 
-		$.ajax = sinon.spy();
+		sinon.stub($, "ajax");
 		items.fetch();
 
 		ok($.ajax.calledOnce);
