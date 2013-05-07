@@ -18,22 +18,25 @@
 <script src="../../WebContent/js/example/models.js"></script>
 
 <script>
-var items;
-module("Items", {
-	setup: function () {
-		items = new Example.Items();
-	}
-});
+(function () {
+	var items;
 
-test("clearAll", function () {
-	items.create({});
-	items.create({});
-	equal(items.length, 2);
+	module("Items", {
+		setup: function () {
+			items = new Example.Items();
+		}
+	});
 
-	items.clearAll();
+	test("clearAll", function () {
+		items.create({});
+		items.create({});
+		equal(items.length, 2);
 
-	equal(items.length, 0);
-});
+		items.clearAll();
+
+		equal(items.length, 0);
+	});
+})();
 </script>
 </body>
 </html>
