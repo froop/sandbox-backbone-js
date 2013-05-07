@@ -26,6 +26,7 @@
 		ok($.ajax.calledOnce);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items");
+		equal(stubArg.type, "GET");
 		equal(stubArg.dataType, "json");
 	});
 })(jQuery);
