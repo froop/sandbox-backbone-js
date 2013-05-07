@@ -44,4 +44,37 @@
 		equal(stubArg.type, "POST");
 		equal(stubArg.dataType, "json");
 	});
+
+	test("ajax save", function () {
+		var items = new Example.Items([{id: "1"}], {
+			url: "/example/items"
+		});
+		var item = items.get("1");
+		item.set("text1", "a");
+		this.stub($, "ajax");
+
+		item.save();
+
+		ok($.ajax.calledOnce);
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items");//TODO
+		equal(stubArg.type, "PUT");
+		equal(stubArg.dataType, "json");
+	});
+
+	test("ajax destory", function () {
+		var items = new Example.Items([{id: "1"}], {
+			url: "/example/items"
+		});
+		var item = items.get("1");
+		this.stub($, "ajax");
+
+		item.destroy();
+
+		ok($.ajax.calledOnce);
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items");//TODO
+		equal(stubArg.type, "DELETE");
+		equal(stubArg.dataType, "json");
+	});
 })(jQuery);
