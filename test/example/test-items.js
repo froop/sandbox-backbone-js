@@ -29,4 +29,19 @@
 		equal(stubArg.type, "GET");
 		equal(stubArg.dataType, "json");
 	});
+
+	test("ajax create", function () {
+		var items = new Example.Items([], {
+			url: "/example/items"
+		});
+		this.stub($, "ajax");
+
+		items.create({text1: "abc"});
+
+		ok($.ajax.calledOnce);
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items");
+		equal(stubArg.type, "POST");
+		equal(stubArg.dataType, "json");
+	});
 })(jQuery);
