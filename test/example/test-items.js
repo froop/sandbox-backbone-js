@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
 	module("Items", {
 		setup: function () {
 		}
@@ -14,4 +14,17 @@
 
 		equal(items.length, 0);
 	});
-})();
+
+	test("ajax fetch", function () {
+		var items = new Example.Items([{a:1}, {a:2}], {
+			url: "/example/items"
+		});
+
+		$.ajax = sinon.spy();
+		items.fetch();
+
+		ok($.ajax.calledOnce);
+		equal($.ajax.getCall(0).args[0].url, "/example/items");
+		equal($.ajax.getCall(0).args[0].dataType, "json");
+	});
+})(jQuery);
