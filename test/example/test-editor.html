@@ -50,7 +50,7 @@ test("setText1 error", function () {
 	editor.setText1("");
 
 	ok(spy.calledOnce);
-	ok(spy.calledWith(editor, "required"));
+	equal(spy.getCall(0).args[1], "required");
 	equal(editor.get("text1"), "a");
 });
 </script>
