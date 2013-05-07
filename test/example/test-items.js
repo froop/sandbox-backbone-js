@@ -43,6 +43,7 @@
 		equal(stubArg.url, "/example/items");
 		equal(stubArg.type, "POST");
 		equal(stubArg.dataType, "json");
+		equal(stubArg.data, '{"text1":"abc"}');
 	});
 
 	test("ajax save", function () {
