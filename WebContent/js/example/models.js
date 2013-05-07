@@ -29,7 +29,7 @@ var Example = new function () {};
 		model: Example.Item,
 		localStorage: new Backbone.LocalStorage("example-items"),
 		clearAll: function () {
-			_(_.clone(this.models)).each(function (item) {
+			_.each(_.clone(this.models), function (item) {
 				item.destroy();
 			});
 		}
