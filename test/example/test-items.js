@@ -61,8 +61,23 @@
 		equal(stubArg.data, '{"text1":"abc"}');
 	});
 
+	test("ajax save model", function () {
+		var item = new Example.Item({id: "1"}, {
+			urlRoot: "/example/items"
+		});
+		this.stub($, "ajax");
+
+		item.save();
+
+		ok($.ajax.calledOnce);
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items/1");
+		equal(stubArg.type, "PUT");
+		equal(stubArg.dataType, "json");
+	});
+
 	test("ajax save", function () {
-		var items = new Example.Items([{id: "1"}], {
+		var items = new Example.Items(new Example.Item({id: "1"}), {
 			url: "/example/items"
 		});
 		var item = items.get("1");
@@ -73,23 +88,23 @@
 
 		ok($.ajax.calledOnce);
 		var stubArg = $.ajax.getCall(0).args[0];
-		equal(stubArg.url, "/example/items");//TODO
+		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "PUT");
 		equal(stubArg.dataType, "json");
 	});
 
 	test("ajax destory", function () {
-		var items = new Example.Items([{id: "1"}], {
+		var item = new Example.Item({id: "1"});
+		new Example.Items([item], {
 			url: "/example/items"
 		});
-		var item = items.get("1");
 		this.stub($, "ajax");
 
 		item.destroy();
 
 		ok($.ajax.calledOnce);
 		var stubArg = $.ajax.getCall(0).args[0];
-		equal(stubArg.url, "/example/items");//TODO
+		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "DELETE");
 		equal(stubArg.dataType, "json");
 	});
