@@ -68,6 +68,7 @@
 		var item = items.get("1");
 		this.stub($, "ajax");
 
+		item.set("text1", "a");
 		item.save();
 
 		ok($.ajax.calledOnce);
@@ -75,6 +76,7 @@
 		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "PUT");
 		equal(stubArg.dataType, "json");
+		equal(stubArg.data, '{"id":"1","text1":"a"}');
 	});
 
 	test("ajax destory collection", function () {
