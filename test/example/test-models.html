@@ -6,36 +6,17 @@
 	<link rel="stylesheet" href="../lib/qunit.css">
 </head>
 <body>
+	<div id="qunit"></div>
 
-<div id="qunit"></div>
+	<script src="../lib/qunit.js"></script>
+	<script src="../lib/sinon.js"></script>
+	<script src="../../WebContent/js/lib/jquery.js"></script>
+	<script src="../../WebContent/js/lib/underscore.js"></script>
+	<script src="../../WebContent/js/lib/backbone.js"></script>
+	<script src="../../WebContent/js/lib/backbone.localstorage.js"></script>
+	<script src="../../WebContent/js/example/models.js"></script>
 
-<script src="../lib/qunit.js"></script>
-<script src="../lib/sinon.js"></script>
-<script src="../../WebContent/js/lib/jquery.js"></script>
-<script src="../../WebContent/js/lib/underscore.js"></script>
-<script src="../../WebContent/js/lib/backbone.js"></script>
-<script src="../../WebContent/js/lib/backbone.localstorage.js"></script>
-<script src="../../WebContent/js/example/models.js"></script>
-<script src="../example/test-editor.js"></script>
-
-<script>
-(function () {
-	module("Items", {
-		setup: function () {
-		}
-	});
-
-	test("clearAll", function () {
-		var items = new Example.Items([{a:1}, {a:2}], {
-			localStorage: new Backbone.LocalStorage("test-items")
-		});
-		equal(items.length, 2);
-
-		items.clearAll();
-
-		equal(items.length, 0);
-	});
-})();
-</script>
+	<script src="../example/test-editor.js"></script>
+	<script src="../example/test-items.js"></script>
 </body>
 </html>
