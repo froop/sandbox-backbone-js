@@ -27,6 +27,14 @@ module("Editor", {
 test("validate text1 required", function () {
 	equal(editor.validate({}), "required");
 	equal(editor.validate({text1: ""}), "required");
+	equal(editor.validate({text1: "a"}), undefined);
+});
+
+test("validate text1 not change", function () {
+	editor.set("text1", "a");
+
+	equal(editor.validate({text1: "a"}), "not change");
+	equal(editor.validate({text1: "b"}), undefined);
 });
 </script>
 </body>
