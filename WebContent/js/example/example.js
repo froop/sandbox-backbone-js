@@ -76,12 +76,10 @@
 	});
 
 	$(function () {
-		var editor = new Example.Editor();
-		var items = new Example.Items();
 		new AppView({
 			el: "#example",
-			model: editor,
-			items : items
+			model: new Example.Editor(),
+			items: new Example.Items()
 		});
 	});
 })(jQuery);
