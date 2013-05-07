@@ -1,8 +1,11 @@
 /*global jQuery, Backbone, _ */
+
+var Example = new function () {};
+
 (function ($) {
 	"use strict";
 
-	var Editor = Backbone.Model.extend({
+	Example.Editor = Backbone.Model.extend({
 		defaults: {
 			text1: ""
 		},
@@ -106,7 +109,7 @@
 	});
 
 	$(function () {
-		var editor = new Editor();
+		var editor = new Example.Editor();
 		var items = new Items();
 		new AppView({
 			el: "#example",
