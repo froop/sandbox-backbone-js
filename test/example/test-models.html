@@ -60,19 +60,15 @@
 })();
 
 (function () {
-	var items;
-
 	module("Items", {
 		setup: function () {
-			items = new Example.Items([], {
-				localStorage: new Backbone.LocalStorage("test-items")
-			});
 		}
 	});
 
 	test("clearAll", function () {
-		items.create({a:1});
-		items.create({a:2});
+		var items = new Example.Items([{a:1}, {a:2}], {
+			localStorage: new Backbone.LocalStorage("test-items")
+		});
 		equal(items.length, 2);
 
 		items.clearAll();
