@@ -20,7 +20,7 @@
 			url: "/example/items"
 		});
 
-		sinon.stub($, "ajax");
+		this.stub($, "ajax");
 		items.fetch();
 
 		ok($.ajax.calledOnce);

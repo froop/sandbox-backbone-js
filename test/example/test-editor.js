@@ -27,7 +27,7 @@
 	});
 
 	test("setText1 error", function () {
-		var spy = sinon.spy();
+		var spy = this.spy();
 		editor.set("text1", "a");
 		editor.on("invalid", spy);
 
