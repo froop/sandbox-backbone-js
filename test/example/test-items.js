@@ -15,7 +15,7 @@
 		equal(items.length, 0);
 	});
 
-	test("ajax fetch", function () {
+	test("ajax fetch collection", function () {
 		var items = new Example.Items([], {
 			url: "/example/items"
 		});
@@ -26,6 +26,21 @@
 		ok($.ajax.calledOnce);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items");
+		equal(stubArg.type, "GET");
+		equal(stubArg.dataType, "json");
+	});
+
+	test("ajax fetch model", function () {
+		var item = new Example.Item({id: "1"}, {
+			urlRoot: "/example/items"
+		});
+		this.stub($, "ajax");
+
+		item.fetch();
+
+		ok($.ajax.calledOnce);
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "GET");
 		equal(stubArg.dataType, "json");
 	});
