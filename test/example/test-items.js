@@ -61,7 +61,7 @@
 		equal(stubArg.data, '{"text1":"abc"}');
 	});
 
-	test("ajax save collection", function () {
+	test("ajax save", function () {
 		var items = new Example.Items(new Example.Item({id: "1"}), {
 			url: "/example/items"
 		});
@@ -79,7 +79,7 @@
 		equal(stubArg.data, '{"id":"1","text1":"a"}');
 	});
 
-	test("ajax destory collection", function () {
+	test("ajax destory", function () {
 		var item = new Example.Item({id: "1"});
 		var items = new Example.Items([item], {
 			url: "/example/items"
