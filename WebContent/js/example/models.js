@@ -29,10 +29,9 @@ var Example = new function () {};
 		model: Example.Item,
 		localStorage: new Backbone.LocalStorage("example-items"),
 		clearAll: function () {
-			var idx;
-			for (idx = this.models.length - 1; idx >= 0; idx--) {
-				this.models[idx].destroy();
-			}
+			_(_.clone(this.models)).each(function (item) {
+				item.destroy();
+			});
 		}
 	});
 })();
