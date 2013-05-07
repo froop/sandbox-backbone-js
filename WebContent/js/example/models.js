@@ -23,4 +23,16 @@ var Example = new function () {};
 			this.set("text1", value, {validate: true});
 		}
 	});
+
+	Example.Item = Backbone.Model.extend({});
+	Example.Items = Backbone.Collection.extend({
+		model: Example.Item,
+		localStorage: new Backbone.LocalStorage("example-items"),
+		clearAll: function () {
+			var idx;
+			for (idx = this.models.length - 1; idx >= 0; idx--) {
+				this.models[idx].destroy();
+			}
+		}
+	});
 })();

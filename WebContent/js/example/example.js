@@ -3,18 +3,6 @@
 (function ($) {
 	"use strict";
 
-	var Item = Backbone.Model.extend({});
-	var Items = Backbone.Collection.extend({
-		model: Item,
-		localStorage: new Backbone.LocalStorage("example-items"),
-		clearAll: function () {
-			var idx;
-			for (idx = this.models.length - 1; idx >= 0; idx--) {
-				this.models[idx].destroy();
-			}
-		}
-	});
-
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
 		initialize: function (options) {
@@ -89,7 +77,7 @@
 
 	$(function () {
 		var editor = new Example.Editor();
-		var items = new Items();
+		var items = new Example.Items();
 		new AppView({
 			el: "#example",
 			model: editor,
