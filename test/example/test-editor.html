@@ -10,6 +10,7 @@
 <div id="qunit"></div>
 
 <script src="../lib/qunit.js"></script>
+<script src="../lib/sinon.js"></script>
 <script src="../../WebContent/js/lib/underscore.js"></script>
 <script src="../../WebContent/js/lib/backbone.js"></script>
 <script src="../../WebContent/js/example/models.js"></script>
@@ -42,15 +43,14 @@ test("setText1 success", function () {
 });
 
 test("setText1 error", function () {
-	expect(2);
+	var spy = sinon.spy();
 	editor.set("text1", "a");
-	editor.on("invalid", function (model, error) {
-
-		equal(error, "required");
-	});
+	editor.on("invalid", spy);
 
 	editor.setText1("");
 
+	ok(spy.calledOnce);
+	ok(spy.calledWith(editor, "required"));
 	equal(editor.get("text1"), "a");
 });
 </script>
