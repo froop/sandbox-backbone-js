@@ -11,6 +11,7 @@
 
 <script src="../lib/qunit.js"></script>
 <script src="../lib/sinon.js"></script>
+<script src="../../WebContent/js/lib/jquery.js"></script>
 <script src="../../WebContent/js/lib/underscore.js"></script>
 <script src="../../WebContent/js/lib/backbone.js"></script>
 <script src="../../WebContent/js/lib/backbone.localstorage.js"></script>
@@ -55,6 +56,26 @@
 		ok(spy.calledOnce);
 		equal(spy.getCall(0).args[1], "required");
 		equal(editor.get("text1"), "a");
+	});
+})();
+
+(function () {
+	var items;
+
+	module("Items", {
+		setup: function () {
+			items = new Example.Items();
+		}
+	});
+
+	test("clearAll", function () {
+		items.create({});
+		items.create({});
+		equal(items.length, 2);
+
+		items.clearAll();
+
+		equal(items.length, 0);
 	});
 })();
 </script>
