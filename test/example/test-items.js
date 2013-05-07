@@ -24,7 +24,8 @@
 		items.fetch();
 
 		ok($.ajax.calledOnce);
-		equal($.ajax.getCall(0).args[0].url, "/example/items");
-		equal($.ajax.getCall(0).args[0].dataType, "json");
+		var stubArg = $.ajax.getCall(0).args[0];
+		equal(stubArg.url, "/example/items");
+		equal(stubArg.dataType, "json");
 	});
 })(jQuery);
