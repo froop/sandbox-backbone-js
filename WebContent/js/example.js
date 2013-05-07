@@ -4,29 +4,20 @@
 
 	var Editor = Backbone.Model.extend({
 		defaults: {
-			text1: "",
-			count: 0
+			text1: ""
 		},
 		initialize: function (attrs, options) {
 		},
 		validate: function (attrs) {
-			if (attrs.text1 === "") {
+			if (_.isEmpty(attrs.text1)) {
 				return "required";
 			}
 			if (_.isEmpty(this.changedAttributes(attrs))) {
 				return "not change";
 			}
 		},
-		/**
-		 * @param value {String}
-		 * @returns {Boolean} true is valid
-		 */
 		setText1: function (value) {
-			var res = this.set("text1", value, {validate: true});
-			return Boolean(res);
-		},
-		countUp: function () {
-			this.set("count", this.get("count") + 1);
+			this.set("text1", value, {validate: true});
 		}
 	});
 
@@ -53,58 +44,74 @@
 			var $item = $("#item-template .item-content").clone();
 			$(".text1", $item).text(this.model.get("text1"));
 			this.$el.append($item);
+			return this;
 		}
 	});
 
-	var AppView = Backbone.View.extend({
-		events: {
-			"click #add": "addItem",
-			"click #clear": "clearItems"
-		},
+	var ItemsView = Backbone.View.extend({
+		el: "#list1",
 		initialize: function (options) {
-			this.$input = this.$("input[name=text1]");
-			this.$count = this.$("#count");
-			this.$list = this.$("#list1");
-			this.items = options.items;
-
-			this.listenTo(this.model, "change", this.render);
-			this.listenTo(this.model, "invalid", function (model, error) {
-				alert(error);
-			});
-			this.listenTo(this.items, "add", this.addItemView);
-
-			this.items.fetch();
+			this.listenTo(this.collection, "add", this.addItemView);
+			this.collection.fetch();
 			this.render();
-		},
-		render: function () {
-			this.$input.val(this.model.get("text1"));
-			this.$count.text(this.model.get("count"));
 		},
 		addItemView: function (item) {
 			var view = new ItemView({
 				model: item
 			});
-			this.$list.append(view.$el);
+			this.$el.append(view.$el);
 		},
-		addItem: function () {
-			if (!this.model.setText1(this.$input.val())) {
-				return;
-			}
-			this.model.countUp();
-			this.items.create({
-				text1: this.model.get("text1")
-			});
+		addItem: function (values) {
+			this.collection.create(values);
 		},
 		clearItems: function () {
-			this.items.clearAll();
+			this.collection.clearAll();
 		}
 	});
 
-	var editor = new Editor();
-	var items = new Items();
-	new AppView({
-		el: "#example",
-		model: editor,
-		items : items
+	var AppView = Backbone.View.extend({
+		events: {
+			"submit #edit-form": function (event) {
+				this.model.setText1(this.$input.val());
+				event.preventDefault();
+			},
+			"click #clear": function () {
+				this.itemsView.clearItems();
+			}
+		},
+		initialize: function (options) {
+			this.count = 0;
+			this.$input = this.$("input[name=text1]");
+			this.$count = this.$("#count");
+			this.itemsView = new ItemsView({
+				collection: options.items
+			});
+
+			this.listenTo(this.model, "change", function () {
+				this.itemsView.addItem(this.model.toJSON());
+				this.count += 1;
+				this.render();
+			});
+			this.listenTo(this.model, "invalid", function (model, error) {
+				alert(error);
+			});
+
+			this.render();
+		},
+		render: function () {
+			this.$input.val(this.model.get("text1"));
+			this.$count.text(this.count);
+			return this;
+		}
+	});
+
+	$(function () {
+		var editor = new Editor();
+		var items = new Items();
+		new AppView({
+			el: "#example",
+			model: editor,
+			items : items
+		});
 	});
 })(jQuery);
