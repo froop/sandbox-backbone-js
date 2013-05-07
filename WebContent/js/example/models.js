@@ -28,7 +28,9 @@ var Example = new function () {};
 	Example.Items = Backbone.Collection.extend({
 		model: Example.Item,
 		initialize: function (attrs, options) {
-			this.localStorage = options.localStorage;
+			if (options) {
+				this.localStorage = options.localStorage;
+			}
 		},
 		clearAll: function () {
 			_.each(_.clone(this.models), function (item) {
