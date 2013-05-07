@@ -79,7 +79,9 @@
 		new AppView({
 			el: "#example",
 			model: new Example.Editor(),
-			items: new Example.Items()
+			items: new Example.Items([], {
+				localStorage: new Backbone.LocalStorage("example-items")
+			})
 		});
 	});
 })(jQuery);

@@ -27,7 +27,9 @@ var Example = new function () {};
 	Example.Item = Backbone.Model.extend({});
 	Example.Items = Backbone.Collection.extend({
 		model: Example.Item,
-		localStorage: new Backbone.LocalStorage("example-items"),
+		initialize: function (attrs, options) {
+			this.localStorage = options.localStorage;
+		},
 		clearAll: function () {
 			_.each(_.clone(this.models), function (item) {
 				item.destroy();

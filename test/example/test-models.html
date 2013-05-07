@@ -64,13 +64,15 @@
 
 	module("Items", {
 		setup: function () {
-			items = new Example.Items();
+			items = new Example.Items([], {
+				localStorage: new Backbone.LocalStorage("test-items")
+			});
 		}
 	});
 
 	test("clearAll", function () {
-		items.create({});
-		items.create({});
+		items.create({a:1});
+		items.create({a:2});
 		equal(items.length, 2);
 
 		items.clearAll();
