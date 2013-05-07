@@ -16,11 +16,11 @@
 	});
 
 	test("ajax fetch", function () {
-		var items = new Example.Items([{a:1}, {a:2}], {
+		var items = new Example.Items([], {
 			url: "/example/items"
 		});
-
 		this.stub($, "ajax");
+
 		items.fetch();
 
 		ok($.ajax.calledOnce);
