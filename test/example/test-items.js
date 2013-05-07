@@ -61,27 +61,11 @@
 		equal(stubArg.data, '{"text1":"abc"}');
 	});
 
-	test("ajax save model", function () {
-		var item = new Example.Item({id: "1"}, {
-			urlRoot: "/example/items"
-		});
-		this.stub($, "ajax");
-
-		item.save();
-
-		ok($.ajax.calledOnce);
-		var stubArg = $.ajax.getCall(0).args[0];
-		equal(stubArg.url, "/example/items/1");
-		equal(stubArg.type, "PUT");
-		equal(stubArg.dataType, "json");
-	});
-
-	test("ajax save", function () {
+	test("ajax save collection", function () {
 		var items = new Example.Items(new Example.Item({id: "1"}), {
 			url: "/example/items"
 		});
 		var item = items.get("1");
-		item.set("text1", "a");
 		this.stub($, "ajax");
 
 		item.save();
@@ -93,9 +77,9 @@
 		equal(stubArg.dataType, "json");
 	});
 
-	test("ajax destory", function () {
+	test("ajax destory collection", function () {
 		var item = new Example.Item({id: "1"});
-		new Example.Items([item], {
+		var items = new Example.Items([item], {
 			url: "/example/items"
 		});
 		this.stub($, "ajax");
@@ -107,5 +91,6 @@
 		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "DELETE");
 		equal(stubArg.dataType, "json");
+		equal(items.length, 0);
 	});
 })(jQuery);
