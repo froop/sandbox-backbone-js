@@ -41,13 +41,12 @@ test("setText1 success", function () {
 	equal(editor.get("text1"), "a");
 });
 
-asyncTest("setText1 error", function () {
+test("setText1 error", function () {
 	expect(2);
 	editor.set("text1", "a");
 	editor.on("invalid", function (model, error) {
 
 		equal(error, "required");
-		start();
 	});
 
 	editor.setText1("");
