@@ -5,7 +5,7 @@
 				el: "#example",
 				editor: new Example.Editor(),
 				items: new Example.Items([], {
-					localStorage: new Backbone.LocalStorage("example-items")
+					localStorage: new Backbone.LocalStorage("test-integrate-items")
 				})
 			});
 			$("#clear").click();
