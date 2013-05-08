@@ -8,12 +8,12 @@
 		events: {
 			"submit": function (event) {
 				event.preventDefault();
-				this.model.setText1(this.$input.val());
+				this.model.setText1(this.$text1.val());
 			}
 		},
 		initialize: function (options) {
 			this.count = 0;
-			this.$input = this.$("input[name=text1]");
+			this.$text1 = this.$("input[name=text1]");
 			this.$count = this.$("#count");
 
 			this.listenTo(this.model, "change", function () {
@@ -27,7 +27,7 @@
 			this.render();
 		},
 		render: function () {
-			this.$input.val(this.model.get("text1"));
+			this.$text1.val(this.model.get("text1"));
 			this.$count.text(this.count);
 			return this;
 		}
