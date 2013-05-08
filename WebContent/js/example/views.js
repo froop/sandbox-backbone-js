@@ -13,7 +13,7 @@
 		render: function () {
 			var $item = $("#item-template .item-content").clone();
 			$(".text1", $item).text(this.model.get("text1"));
-			this.$el.append($item);
+			this.$el.empty().append($item);
 			return this;
 		}
 	});
