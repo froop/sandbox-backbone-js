@@ -1,4 +1,4 @@
-/*global alert, jQuery, Backbone, Example */
+/*global jQuery, Backbone, Example */
 
 (function ($) {
 	"use strict";
@@ -8,6 +8,7 @@
 		events: {
 			"submit": function (event) {
 				event.preventDefault();
+				this.$error.empty();
 				this.model.setText1(this.$text1.val());
 			}
 		},
@@ -15,13 +16,14 @@
 			this.count = 0;
 			this.$text1 = this.$("input[name=text1]");
 			this.$count = this.$("#count");
+			this.$error = this.$("#error");
 
 			this.listenTo(this.model, "change", function () {
 				this.count += 1;
 				this.render();
 			});
 			this.listenTo(this.model, "invalid", function (model, error) {
-				alert(error);
+				this.$error.text(error);
 			});
 
 			this.render();
