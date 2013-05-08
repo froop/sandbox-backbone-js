@@ -44,4 +44,13 @@
 		equal($(".text1", $list).eq(0).text(), "a");
 		equal($(".text1", $list).eq(1).text(), "b");
 	});
+
+	test("ItemsView clear", function () {
+		var $list = $("#list1");
+		submitItems();
+
+		$("#clear").click();
+
+		equal($("li", $list).length, 0);
+	});
 })(jQuery);
