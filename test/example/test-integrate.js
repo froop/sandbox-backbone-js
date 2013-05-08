@@ -12,13 +12,23 @@
 		}
 	});
 
-	test("editorView error require", function () {
+	test("editorView error required", function () {
 		var $form = $("#edit-form");
 		$("input[name=text1]", $form).val("");
 		$("#add", $form).click();
 
 		equal($("#error", $form).text(), "required");
 		equal($("#count", $form).text(), 0);
+	});
+
+	test("editorView error not change", function () {
+		var $form = $("#edit-form");
+		$("input[name=text1]", $form).val("a");
+		$("#add", $form).click();
+		$("input[name=text1]", $form).val("a");
+		$("#add", $form).click();
+
+		equal($("#error", $form).text(), "not change");
 	});
 
 	function submitItems() {
