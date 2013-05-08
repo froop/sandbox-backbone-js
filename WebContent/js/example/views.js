@@ -23,7 +23,6 @@
 		initialize: function () {
 			this.listenTo(this.collection, "add", this.addItemView);
 			this.collection.fetch();
-			this.render();
 		},
 		addItemView: function (item) {
 			var view = new ItemView({
