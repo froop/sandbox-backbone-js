@@ -1,4 +1,4 @@
-define(["lib/jquery", "lib/backbone"], function ($, Backbone) {
+define(["lib/jquery", "backbone"], function ($, Backbone) {
 	"use strict";
 
 	var EditorView =  Backbone.View.extend({

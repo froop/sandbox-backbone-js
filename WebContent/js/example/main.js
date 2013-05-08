@@ -1,5 +1,5 @@
-require(["lib/jquery", "example/models", "example/views"],
-		function ($, Models, Views) {
+require(["lib/jquery", "lib/backbone.localStorage", "example/models", "example/views"],
+		function ($, LocalStorage, Models, Views) {
 	"use strict";
 
 	$(function () {
@@ -7,7 +7,7 @@ require(["lib/jquery", "example/models", "example/views"],
 			el: "#example",
 			editor: new Models.Editor(),
 			items: new Models.Items([], {
-				localStorage: new Backbone.LocalStorage("example-items")
+				localStorage: new LocalStorage("example-items")
 			})
 		});
 	});

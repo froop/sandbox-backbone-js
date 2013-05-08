@@ -1,13 +1,17 @@
 require.config({
+	paths: {
+		backbone: "lib/backbone",
+		underscore: "lib/underscore"
+	},
 	shim: {
 		"lib/jquery": {
 			exports: "jQuery"
 		},
-		"lib/underscore": {
+		underscore: {
 			exports: "_"
 		},
-		"lib/backbone": {
-			deps: ["underscore", "jquery"],
+		backbone: {
+			deps: ["underscore", "lib/jquery"],
 			exports: "Backbone"
 		},
 		"lib/backbone.localStorage": {
