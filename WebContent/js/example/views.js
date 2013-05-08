@@ -70,7 +70,7 @@
 		}
 	});
 
-	var AppView = Backbone.View.extend({
+	Example.AppView = Backbone.View.extend({
 		events: {
 			"click #clear": function () {
 				this.itemsView.clearItems();
@@ -91,7 +91,7 @@
 	});
 
 	$(function () {
-		new AppView({
+		new Example.AppView({
 			el: "#example",
 			editor: new Example.Editor(),
 			items: new Example.Items([], {
