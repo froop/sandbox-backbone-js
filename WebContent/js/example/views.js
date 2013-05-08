@@ -3,6 +3,36 @@
 (function ($) {
 	"use strict";
 
+	var EditorView =  Backbone.View.extend({
+		el: "#edit-form",
+		events: {
+			"submit": function (event) {
+				event.preventDefault();
+				this.model.setText1(this.$input.val());
+			}
+		},
+		initialize: function (options) {
+			this.count = 0;
+			this.$input = this.$("input[name=text1]");
+			this.$count = this.$("#count");
+
+			this.listenTo(this.model, "change", function () {
+				this.count += 1;
+				this.render();
+			});
+			this.listenTo(this.model, "invalid", function (model, error) {
+				alert(error);
+			});
+
+			this.render();
+		},
+		render: function () {
+			this.$input.val(this.model.get("text1"));
+			this.$count.text(this.count);
+			return this;
+		}
+	});
+
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
 		initialize: function () {
@@ -40,44 +70,28 @@
 
 	var AppView = Backbone.View.extend({
 		events: {
-			"submit #edit-form": function (event) {
-				this.model.setText1(this.$input.val());
-				event.preventDefault();
-			},
 			"click #clear": function () {
 				this.itemsView.clearItems();
 			}
 		},
 		initialize: function (options) {
-			this.count = 0;
-			this.$input = this.$("input[name=text1]");
-			this.$count = this.$("#count");
+			this.editorView = new EditorView({
+				model: options.editor
+			});
 			this.itemsView = new ItemsView({
 				collection: options.items
 			});
 
-			this.listenTo(this.model, "change", function () {
-				this.itemsView.addItem(this.model.toJSON());
-				this.count += 1;
-				this.render();
+			this.listenTo(options.editor, "change", function () {
+				this.itemsView.addItem(options.editor.toJSON());
 			});
-			this.listenTo(this.model, "invalid", function (model, error) {
-				alert(error);
-			});
-
-			this.render();
-		},
-		render: function () {
-			this.$input.val(this.model.get("text1"));
-			this.$count.text(this.count);
-			return this;
 		}
 	});
 
 	$(function () {
 		new AppView({
 			el: "#example",
-			model: new Example.Editor(),
+			editor: new Example.Editor(),
 			items: new Example.Items([], {
 				localStorage: new Backbone.LocalStorage("example-items")
 			})
