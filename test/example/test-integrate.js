@@ -21,13 +21,18 @@
 		equal($("#count", $form).text(), 0);
 	});
 
-	test("editorView submit", function () {
+	function submitItems() {
 		var $form = $("#edit-form");
-		var $list = $("#list1");
 		$("input[name=text1]", $form).val("a");
 		$("#add", $form).click();
 		$("input[name=text1]", $form).val("b");
 		$("#add", $form).click();
+	}
+
+	test("editorView submit", function () {
+		var $form = $("#edit-form");
+		var $list = $("#list1");
+		submitItems();
 
 		equal($("#count", $form).text(), "2");
 		equal($("li", $list).length, 2);
