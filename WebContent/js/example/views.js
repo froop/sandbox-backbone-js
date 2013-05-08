@@ -1,11 +1,11 @@
-/*global jQuery, _, Backbone */
+/*global alert, jQuery, Backbone, Example */
 
 (function ($) {
 	"use strict";
 
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
-		initialize: function (options) {
+		initialize: function () {
 //			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.render();
@@ -20,7 +20,7 @@
 
 	var ItemsView = Backbone.View.extend({
 		el: "#list1",
-		initialize: function (options) {
+		initialize: function () {
 			this.listenTo(this.collection, "add", this.addItemView);
 			this.collection.fetch();
 			this.render();
