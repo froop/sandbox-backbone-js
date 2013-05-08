@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Models</title>
+	<link rel="stylesheet" href="../lib/qunit.css">
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture">
+		<div id="example">
+			<form id="edit-form">
+				<input name="text1">
+				<button type="submit" id="add">add</button>
+				<div id="error"></div>
+				<div id="count"></div>
+			</form>
+		
+			<ul id="navi">
+				<li><button id="clear">clear</button></li>
+			</ul>
+			<ol id="list1"></ol>
+		
+			<div id="item-template" class="template">
+				<div class="item-content">
+					<span class="text1"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../lib/qunit.js"></script>
+	<script src="../lib/sinon.js"></script>
+	<script src="../lib/sinon-qunit.js"></script>
+	<script src="../../WebContent/js/lib/jquery.js"></script>
+	<script src="../../WebContent/js/lib/underscore.js"></script>
+	<script src="../../WebContent/js/lib/backbone.js"></script>
+	<script src="../../WebContent/js/lib/backbone.localstorage.js"></script>
+	<script src="../../WebContent/js/example/models.js"></script>
+	<script src="../../WebContent/js/example/views.js"></script>
+
+	<script src="../example/test-integrate.js"></script>
+</body>
+</html>
