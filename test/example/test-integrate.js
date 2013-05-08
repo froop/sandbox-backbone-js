@@ -31,10 +31,15 @@
 
 	test("editorView submit", function () {
 		var $form = $("#edit-form");
-		var $list = $("#list1");
 		submitItems();
 
 		equal($("#count", $form).text(), "2");
+	});
+
+	test("ItemsView add", function () {
+		var $list = $("#list1");
+		submitItems();
+
 		equal($("li", $list).length, 2);
 		equal($(".text1", $list).eq(0).text(), "a");
 		equal($(".text1", $list).eq(1).text(), "b");
