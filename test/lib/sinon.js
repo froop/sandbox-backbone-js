@@ -1,5 +1,5 @@
 /**
- * Sinon.JS 1.7.0, 2013/05/07
+ * Sinon.JS 1.7.1, 2013/05/07
  *
  * @author Christian Johansen (christian@cjohansen.no)
  * @author Contributors: https://github.com/cjohansen/Sinon.JS/blob/master/AUTHORS
@@ -3322,6 +3322,9 @@ sinon.xhr = { XMLHttpRequest: this.XMLHttpRequest };
             this.readyState = sinon.FakeXMLHttpRequest.UNSENT;
 
             this.dispatchEvent(new sinon.Event("abort", false, false, this));
+            if (typeof this.onerror === "function") {
+                this.onerror();
+            }
         },
 
         getResponseHeader: function getResponseHeader(header) {
@@ -3402,6 +3405,10 @@ sinon.xhr = { XMLHttpRequest: this.XMLHttpRequest };
             this.status = typeof status == "number" ? status : 200;
             this.statusText = FakeXMLHttpRequest.statusCodes[this.status];
             this.setResponseBody(body || "");
+            if (typeof this.onload === "function"){
+                this.onload();
+            }
+            
         }
     });
 
