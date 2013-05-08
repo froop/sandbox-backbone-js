@@ -23,7 +23,7 @@
 
 		items.fetch();
 
-		ok($.ajax.calledOnce);
+		equal($.ajax.callCount, 1);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items");
 		equal(stubArg.type, "GET");
@@ -38,7 +38,7 @@
 
 		item.fetch();
 
-		ok($.ajax.calledOnce);
+		equal($.ajax.callCount, 1);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "GET");
@@ -53,7 +53,7 @@
 
 		items.create({text1: "abc"});
 
-		ok($.ajax.calledOnce);
+		equal($.ajax.callCount, 1);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items");
 		equal(stubArg.type, "POST");
@@ -71,7 +71,7 @@
 		item.set("text1", "a");
 		item.save();
 
-		ok($.ajax.calledOnce);
+		equal($.ajax.callCount, 1);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "PUT");
@@ -88,7 +88,7 @@
 
 		item.destroy();
 
-		ok($.ajax.calledOnce);
+		equal($.ajax.callCount, 1);
 		var stubArg = $.ajax.getCall(0).args[0];
 		equal(stubArg.url, "/example/items/1");
 		equal(stubArg.type, "DELETE");
