@@ -1,4 +1,4 @@
-require(["lib/jquery", "lib/backbone.localStorage", "example/models", "example/views"],
+require(["jquery", "backbone.localStorage", "example/models", "example/views"],
 		function ($, LocalStorage, Models, Views) {
 	"use strict";
 	module("Integrate", {

@@ -12,7 +12,13 @@
 	<script src="../lib/sinon.js"></script>
 	<script src="../lib/sinon-qunit.js"></script>
 
-	<script data-main="../../WebContent/js/require.config" src="../../WebContent/js/lib/require.js"></script>
+	<script src="../../WebContent/js/lib/require.js"></script>
+	<script src="../../WebContent/js/require.config.js"></script>
+	<script>
+		require.config({
+			baseUrl: "../../WebContent/js"
+		});
+	</script>
 	<script src="test-editor.js"></script>
 	<script src="test-items.js"></script>
 </body>
