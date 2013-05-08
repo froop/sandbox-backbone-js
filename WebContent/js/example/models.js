@@ -1,6 +1,6 @@
 /*global _, Backbone */
 
-var Example = new function () {};
+var Example = function () {};
 
 (function () {
 	"use strict";
@@ -8,8 +8,6 @@ var Example = new function () {};
 	Example.Editor = Backbone.Model.extend({
 		defaults: {
 			text1: ""
-		},
-		initialize: function (attrs, options) {
 		},
 		validate: function (attrs) {
 			if (_.isEmpty(attrs.text1)) {
