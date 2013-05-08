@@ -1,6 +1,4 @@
-/*global jQuery, Backbone, Example */
-
-(function ($) {
+define(["lib/jquery", "lib/backbone"], function ($, Backbone) {
 	"use strict";
 
 	var EditorView =  Backbone.View.extend({
@@ -74,7 +72,7 @@
 		}
 	});
 
-	Example.AppView = Backbone.View.extend({
+	var AppView = Backbone.View.extend({
 		events: {
 			"click #clear": function () {
 				this.editorView.clear();
@@ -94,4 +92,8 @@
 			});
 		}
 	});
-})(jQuery);
+
+	return {
+		AppView: AppView
+	};
+});

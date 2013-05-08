@@ -1,13 +1,11 @@
-(function ($) {
+require(["example/models"], function (Models) {
 	module("Items", {
 		setup: function () {
 		}
 	});
 
 	test("clearAll", function () {
-		var items = new Example.Items([{a:1}, {a:2}], {
-			localStorage: new Backbone.LocalStorage("test-items")
-		});
+		var items = new Models.Items([{a:1}, {a:2}]);
 		equal(items.length, 2);
 
 		items.clearAll();
@@ -16,7 +14,7 @@
 	});
 
 	test("ajax fetch collection", function () {
-		var items = new Example.Items([], {
+		var items = new Models.Items([], {
 			url: "/example/items"
 		});
 		this.stub($, "ajax");
@@ -31,7 +29,7 @@
 	});
 
 	test("ajax fetch model", function () {
-		var item = new Example.Item({id: "1"}, {
+		var item = new Models.Item({id: "1"}, {
 			urlRoot: "/example/items"
 		});
 		this.stub($, "ajax");
@@ -46,7 +44,7 @@
 	});
 
 	test("ajax create", function () {
-		var items = new Example.Items([], {
+		var items = new Models.Items([], {
 			url: "/example/items"
 		});
 		this.stub($, "ajax");
@@ -62,7 +60,7 @@
 	});
 
 	test("ajax save", function () {
-		var items = new Example.Items(new Example.Item({id: "1"}), {
+		var items = new Models.Items(new Models.Item({id: "1"}), {
 			url: "/example/items"
 		});
 		var item = items.get("1");
@@ -80,8 +78,8 @@
 	});
 
 	test("ajax destory", function () {
-		var item = new Example.Item({id: "1"});
-		var items = new Example.Items([item], {
+		var item = new Models.Item({id: "1"});
+		var items = new Models.Items([item], {
 			url: "/example/items"
 		});
 		this.stub($, "ajax");
@@ -95,4 +93,4 @@
 		equal(stubArg.dataType, "json");
 		equal(items.length, 0);
 	});
-})(jQuery);
+});

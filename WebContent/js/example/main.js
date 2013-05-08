@@ -1,15 +1,14 @@
-/*global jQuery, Backbone, Example */
-
-(function ($) {
+require(["lib/jquery", "example/models", "example/views"],
+		function ($, Models, Views) {
 	"use strict";
 
 	$(function () {
-		new Example.AppView({
+		new Views.AppView({
 			el: "#example",
-			editor: new Example.Editor(),
-			items: new Example.Items([], {
+			editor: new Models.Editor(),
+			items: new Models.Items([], {
 				localStorage: new Backbone.LocalStorage("example-items")
 			})
 		});
 	});
-})(jQuery);
+});

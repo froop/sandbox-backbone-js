@@ -1,11 +1,7 @@
-/*global _, Backbone */
-
-var Example = function () {};
-
-(function () {
+define(["lib/underscore", "lib/backbone"], function (_, Backbone) {
 	"use strict";
 
-	Example.Editor = Backbone.Model.extend({
+	var Editor = Backbone.Model.extend({
 		defaults: {
 			text1: ""
 		},
@@ -22,9 +18,9 @@ var Example = function () {};
 		}
 	});
 
-	Example.Item = Backbone.Model.extend({});
-	Example.Items = Backbone.Collection.extend({
-		model: Example.Item,
+	var Item = Backbone.Model.extend({});
+	var Items = Backbone.Collection.extend({
+		model: Item,
 		initialize: function (attrs, options) {
 			if (options) {
 				this.localStorage = options.localStorage;
@@ -36,4 +32,10 @@ var Example = function () {};
 			});
 		}
 	});
-})();
+
+	return {
+		Editor: Editor,
+		Item: Item,
+		Items: Items
+	};
+});

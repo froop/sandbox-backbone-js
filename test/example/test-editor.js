@@ -1,9 +1,10 @@
-(function () {
+require(["example/models"], function (Models) {
+	"use strict";
 	var editor = null;
 
 	module("Editor", {
 		setup: function () {
-			editor = new Example.Editor();
+			editor = new Models.Editor();
 		}
 	});
 
@@ -37,4 +38,4 @@
 		equal(spy.getCall(0).args[1], "required");
 		equal(editor.get("text1"), "a");
 	});
-})();
+});

@@ -1,11 +1,13 @@
-(function ($) {
+require(["lib/jquery", "lib/backbone.localStorage", "example/models", "example/views"],
+		function ($, LocalStorage, Models, Views) {
+	"use strict";
 	module("Integrate", {
 		setup: function () {
-			new Example.AppView({
+			new Views.AppView({
 				el: "#example",
-				editor: new Example.Editor(),
-				items: new Example.Items([], {
-					localStorage: new Backbone.LocalStorage("test-integrate-items")
+				editor: new Models.Editor(),
+				items: new Models.Items([], {
+					localStorage: new LocalStorage("test-integrate-items")
 				})
 			});
 			$("#clear").click();
@@ -77,4 +79,4 @@
 
 		equal($("li", $list).length, 0);
 	});
-})(jQuery);
+});
