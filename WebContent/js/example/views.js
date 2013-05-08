@@ -32,6 +32,10 @@
 			this.$text1.val(this.model.get("text1"));
 			this.$count.text(this.count);
 			return this;
+		},
+		clear: function () {
+			this.count = -1;
+			this.model.clear();
 		}
 	});
 
@@ -73,6 +77,7 @@
 	Example.AppView = Backbone.View.extend({
 		events: {
 			"click #clear": function () {
+				this.editorView.clear();
 				this.itemsView.clearItems();
 			}
 		},

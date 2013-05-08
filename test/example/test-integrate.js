@@ -46,6 +46,20 @@
 		equal($("#count", $form).text(), "2");
 	});
 
+	test("editorView clear", function () {
+		var $form = $("#edit-form");
+		$("input[name=text1]", $form).val("a");
+		$("#add", $form).click();
+
+		$("#clear").click();
+
+		$("input[name=text1]", $form).val("a");
+		$("#add", $form).click();
+
+		equal($("#count", $form).text(), "1");
+		equal($("#error", $form).text(), "");
+	});
+
 	test("ItemsView add", function () {
 		var $list = $("#list1");
 		submitItems();
