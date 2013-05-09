@@ -1,7 +1,7 @@
-require(["require.config"], function () {
+require(["js/require.config"], function () {
 	"use strict";
 
-	require(["jquery", "backbone", "example/models", "example/views",
+	require(["jquery", "backbone", "js/example/models", "js/example/views",
 			"backbone.localStorage"],
 			function ($, Backbone, Models, Views) {
 

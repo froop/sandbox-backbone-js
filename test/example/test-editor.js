@@ -1,4 +1,4 @@
-require(["example/models"], function (Models) {
+require(["js/example/models"], function (Models) {
 	"use strict";
 	var editor = null;
 
