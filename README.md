@@ -1,8 +1,10 @@
 Backbone.js ベースの Web アプリケーション実験
 ====================
 
-Web ブラウザ上の JavaScript が主体になって、画面の表示や遷移を行う。
-サーバー側との通信は REST 形式の API を介す。
+Web ブラウザ上の JavaScript が主体になって、画面の作成や遷移を行う。
+サーバー側処理の呼び出しは REST 形式の API を介す。
+
+クライアントは HTML5 対応のモダンブラウザが前提。LocalStorage を活用するため。
 
 
 JavaScript ライブラリ
@@ -12,8 +14,9 @@ JavaScript ライブラリ
 
 http://backbonejs.org/
 
-MVC フレームワーク。
-JavaScript で多くの処理を行うようになると、構造をしっかりしないと非効率なため。
+MVC フレームワーク。JavaScript で多くの処理を行うようになると、構造をしっかりしないと非効率なため導入。
+
+LocalStorage を利用するために [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage) プラグインを導入。
 
 
 ### jQuery
