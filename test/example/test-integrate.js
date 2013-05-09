@@ -1,6 +1,6 @@
-// Web サーバーに置いて実行すること。example.htmlへのアクセスにAjax通信をしているため
+// Webサーバーに置いて実行すること。example.htmlへのアクセスにAjax通信をしているため
 require(["jquery", "backbone.localStorage", "example/models", "example/views",
- 		"../../test/lib/text!../example.html"],
+ 		"text!../example.html"],
 		function ($, LocalStorage, Models, Views, html) {
 	"use strict";
 	module("Integrate", {
