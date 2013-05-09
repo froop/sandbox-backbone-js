@@ -9,21 +9,6 @@
 	<div id="qunit"></div>
 	<div id="qunit-fixture"></div>
 
-	<script src="../../WebContent/js/lib/jquery.js"></script>
-	<script>
-		$.ajax({
-			url: "../../WebContent/example.html",
-			async: false,
-			success: function (responseText) {
-				$("#qunit-fixture").append(
-						$("<div>").html(responseText).find("#example"));
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				alert(xhr.status + ":" + textStatus + ":" + errorThrown);
-			}
-		});
-	</script>
-
 	<script src="../lib/qunit.js"></script>
 	<script src="../lib/sinon.js"></script>
 	<script src="../lib/sinon-qunit.js"></script>

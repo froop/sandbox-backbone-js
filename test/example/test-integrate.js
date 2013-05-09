@@ -1,8 +1,13 @@
-require(["jquery", "backbone.localStorage", "example/models", "example/views"],
-		function ($, LocalStorage, Models, Views) {
+// Web サーバーに置いて実行すること。example.htmlへのアクセスにAjax通信をしているため
+require(["jquery", "backbone.localStorage", "example/models", "example/views",
+ 		"../../test/lib/text!../example.html"],
+		function ($, LocalStorage, Models, Views, html) {
 	"use strict";
 	module("Integrate", {
 		setup: function () {
+			$("#qunit-fixture").append(
+					$("<div>").html(html).find("#example"));
+
 			new Views.AppView({
 				el: "#example",
 				editor: new Models.Editor(),
