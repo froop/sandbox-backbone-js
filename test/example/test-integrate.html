@@ -17,6 +17,9 @@
 			success: function (responseText) {
 				$("#qunit-fixture").append(
 						$("<div>").html(responseText).find("#example"));
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(xhr.status + ":" + textStatus + ":" + errorThrown);
 			}
 		});
 	</script>
