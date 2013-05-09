@@ -1,8 +1,9 @@
 require(["require.config"], function () {
+	"use strict";
+
 	require(["jquery", "backbone", "example/models", "example/views",
 			"backbone.localStorage"],
 			function ($, Backbone, Models, Views) {
-		"use strict";
 
 		$(function () {
 			new Views.AppView({
