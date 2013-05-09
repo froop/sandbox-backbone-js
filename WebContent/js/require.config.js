@@ -6,7 +6,7 @@ require.config({
 		"backbone.localStorage":	"lib/backbone.localStorage"
 	},
 	shim: {
-		"jquery": {
+		jquery: {
 			exports: "jQuery"
 		},
 		underscore: {
