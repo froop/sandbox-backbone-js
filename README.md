@@ -4,8 +4,16 @@ Backbone.js ベースの Web アプリケーション実験
 Web ブラウザ上の JavaScript が主体になって、画面の作成や遷移を制御する方式。
 サーバー側処理の呼び出しは REST 形式の API を介して行う。
 
-クライアントは HTML5 対応のモダンブラウザが前提。LocalStorage を使用したいため。
 
+対象 Web ブラウザ
+--------------------
+
+HTML5 対応のモダンブラウザが前提。LocalStorage を使用したいため。
+
+* Firefox
+* Google Chrome
+* Safari
+* Internet Explorer 8 以降 (LocalStorage が Web サーバー経由でないと使用できないので注意)
 
 JavaScript ライブラリ
 --------------------
