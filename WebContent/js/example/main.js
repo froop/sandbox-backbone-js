@@ -1,7 +1,3 @@
-require.config({
-	baseUrl: "js"
-});
-
 require(["require.config"], function () {
 	require(["jquery", "backbone", "example/models", "example/views",
 			"backbone.localStorage"],
