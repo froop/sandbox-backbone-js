@@ -4,38 +4,30 @@ Backbone.js ベースの Web アプリケーション実験
 Web ブラウザ上の JavaScript が主体になって、画面の作成や遷移を行う。
 サーバー側処理の呼び出しは REST 形式の API を介す。
 
-クライアントは HTML5 対応のモダンブラウザが前提。LocalStorage を活用するため。
+クライアントは HTML5 対応のモダンブラウザが前提。LocalStorage を使用したいため。
 
 
 JavaScript ライブラリ
 --------------------
 
-### Backbone.js
-
-http://backbonejs.org/
+### Backbone.js (http://backbonejs.org/)
 
 MVC フレームワーク。JavaScript で多くの処理を行うようになると、構造をしっかりしないと非効率なため導入。
-
 LocalStorage を利用するために [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage) プラグインを導入。
 
 
-### jQuery
-
-http://jquery.com/
+### jQuery (http://jquery.com/)
 
 定番。DOM 操作と Ajax 通信用。
 
 
-### Underscore.js
+### Underscore.js (http://underscorejs.org/)
 
-http://underscorejs.org/
+Backbone.js が依存している。関数型言語的なユーティリティー関数群を提供するライブラリ。
+便利なので Backbone と関係しない処理で直接使う場面も多い。
 
-Backbone.js が依存しているライブラリ。便利なライブラリなので直接使う場面も多い。
 
-
-### Require.js
-
-http://requirejs.org/
+### Require.js (http://requirejs.org/)
 
 JavaScript ファイルのローダー。
 JavaScript で多くを処理するようになると、ファイルが増えて依存関係の管理などが煩雑になるため。
@@ -44,7 +36,8 @@ JavaScript で多くを処理するようになると、ファイルが増えて
 HTML 動的生成
 --------------------
 
-テンプレートエンジンは使用せず、jQuery で DOM を直接操作する。デザインとプログラミングで担当を分けない前提。
+テンプレートエンジンは使用せず、jQuery で DOM を直接操作する。
+デザインとプログラミングで担当を分けない前提なら、テンプレートエンジンで複雑化する不利に見合わないという判断。
 詳細は https://gist.github.com/froop/5492623 を参照。
 
 
