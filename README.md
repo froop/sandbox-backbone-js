@@ -1,8 +1,8 @@
 Backbone.js ベースの Web アプリケーション実験
 ====================
 
-Web ブラウザ上の JavaScript が主体になって、画面の作成や遷移を行う。
-サーバー側処理の呼び出しは REST 形式の API を介す。
+Web ブラウザ上の JavaScript が主体になって、画面の作成や遷移を制御する方式。
+サーバー側処理の呼び出しは REST 形式の API を介して行う。
 
 クライアントは HTML5 対応のモダンブラウザが前提。LocalStorage を使用したいため。
 
@@ -27,7 +27,7 @@ Backbone.js が依存している。関数型言語的なユーティリティ�
 便利なので Backbone と関係しない処理で直接使う場面も多い。
 
 
-### Require.js (http://requirejs.org/)
+### RequireJS (http://requirejs.org/)
 
 JavaScript ファイルのローダー。
 JavaScript で多くを処理するようになると、ファイルが増えて依存関係の管理などが煩雑になるため。
