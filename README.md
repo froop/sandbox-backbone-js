@@ -59,7 +59,7 @@ Backbone.js が依存している。関数型言語的なユーティリティ�
 
 ### RequireJS (http://requirejs.org/)
 
-JavaScript ファイルのローダー。
+JavaScript ファイルの依存関係を解決するローダー。
 JavaScript で多くを処理するようになると、ファイルが増えて依存関係の管理などが煩雑になるため。
 
 
