@@ -69,7 +69,7 @@ JavaScript ライブラリ
 MVC フレームワーク。JavaScript プログラムに構造を持たせて開発や保守を効率化するため導入。
 また、下記のプラグインも導入。
 
-* LocalStorage を利用するために [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage)
+* [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage): LocalStorage を利用するため
 
 
 ### jQuery (http://jquery.com/)
@@ -86,7 +86,7 @@ Backbone.js が依存している。関数型言語的なユーティリティ�
 ### RequireJS (http://requirejs.org/)
 
 JavaScript ファイルの依存関係を解決するローダー。
-JavaScript で多くを処理するようになると、ファイルが増えて依存関係の管理などが煩雑になるため。
+JavaScript で多くを処理するようになると、依存関係が複雑化して管理が煩雑になるため。
 
 
 HTML 動的生成
