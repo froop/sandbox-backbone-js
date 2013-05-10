@@ -3,7 +3,8 @@ require.config({
 		jquery:						"js/lib/jquery",
 		underscore:					"js/lib/underscore",
 		backbone:					"js/lib/backbone",
-		"backbone.localStorage":	"js/lib/backbone.localStorage"
+		"backbone.localStorage":	"js/lib/backbone.localStorage",
+		"jquery.clonetemplate":		"js/lib/jquery.clonetemplate"
 	},
 	shim: {
 		jquery: {

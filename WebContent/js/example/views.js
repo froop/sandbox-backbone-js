@@ -1,4 +1,4 @@
-define(["jquery", "backbone"], function ($, Backbone) {
+define(["jquery", "backbone", "jquery.clonetemplate"], function ($, Backbone) {
 	"use strict";
 
 	var EditorView =  Backbone.View.extend({
@@ -46,8 +46,9 @@ define(["jquery", "backbone"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			this.$el.empty().append($("#item-template > *").clone());
-			this.$el.find(".text1").text(this.model.get("text1"));
+			this.$el.empty().append($("#item-template > *").cloneTemplate({
+				text1: this.model.get("text1")
+			}));
 			return this;
 		}
 	});
