@@ -40,8 +40,10 @@ JavaScript ライブラリ
 
 ### Backbone.js (http://backbonejs.org/)
 
-MVC フレームワーク。JavaScript で多くの処理を行うようになると、構造をしっかりしないと非効率なため導入。
-LocalStorage を利用するために [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage) プラグインを導入。
+MVC フレームワーク。JavaScript プログラムに構造を持たせて開発や保守を効率化するため導入。
+また、下記のプラグインも導入。
+
+* LocalStorage を利用するために [backbone.localStorage.js](https://github.com/jeromegn/Backbone.localStorage)
 
 
 ### jQuery (http://jquery.com/)
