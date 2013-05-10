@@ -52,8 +52,8 @@ HTML 動的生成
 単体テスト
 --------------------
 
-* フレームワーク: QUnit http://qunitjs.com/
-* テストダブルライブラリ: Sinon.JS http://sinonjs.org/
+* フレームワーク: QUnit (http://qunitjs.com/)
+* テストダブルライブラリ: Sinon.JS (http://sinonjs.org/)
 
 最近は BDD 系で RSpec 風の [Jasmine](http://pivotal.github.io/jasmine/) が流行のようだが、
 QUnit は昔ながらの JUnit 風でシンプルなため導入の敷居が低いのと、既に利用経験があり慣れているので。
