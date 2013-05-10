@@ -16,6 +16,9 @@ require.config({
 		backbone: {
 			deps: ["jquery", "underscore"],
 			exports: "Backbone"
+		},
+		"jquery.clonetemplate": {
+			deps: ["jquery"]
 		}
 	}
 });
