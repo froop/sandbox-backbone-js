@@ -39,15 +39,15 @@ define(["jquery", "backbone"], function ($, Backbone) {
 
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
+		className: "item-content",
 		initialize: function () {
 //			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.render();
 		},
 		render: function () {
-			var $item = $("#item-template .item-content").clone();
-			$(".text1", $item).text(this.model.get("text1"));
-			this.$el.empty().append($item);
+			this.$el.empty().append($("#item-template > *").clone());
+			this.$el.find(".text1").text(this.model.get("text1"));
 			return this;
 		}
 	});
