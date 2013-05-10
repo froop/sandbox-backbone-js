@@ -16,7 +16,7 @@
 		var $element = $template.clone();
 
 		$.each(map, function (className) {
-			var $field = $element.find("." + className);
+			var $field = $element.filter("." + className);
 			//TODO
 			$field.text(map[className]);
 		});
