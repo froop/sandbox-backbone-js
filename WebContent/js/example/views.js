@@ -65,7 +65,7 @@ define(["jquery", "backbone"], function ($, Backbone) {
 			this.$el.append(view.$el);
 		},
 		addItem: function (values) {
-			this.collection.create(values);
+			this.collection.create(values, {wait: true});
 		},
 		clearItems: function () {
 			this.collection.clearAll();

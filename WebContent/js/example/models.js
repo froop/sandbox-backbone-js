@@ -28,7 +28,7 @@ define(["underscore", "backbone"], function (_, Backbone) {
 		},
 		clearAll: function () {
 			_.each(_.clone(this.models), function (item) {
-				item.destroy();
+				item.destroy({wait: true});
 			});
 		}
 	});
