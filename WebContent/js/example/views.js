@@ -55,14 +55,13 @@ define(["jquery", "backbone"], function ($, Backbone) {
 	var ItemsView = Backbone.View.extend({
 		el: "#list1",
 		initialize: function () {
-			this.listenTo(this.collection, "add", this.addItemView);
-			this.collection.fetch();
-		},
-		addItemView: function (item) {
-			var view = new ItemView({
-				model: item
+			this.listenTo(this.collection, "add", function (item) {
+				var view = new ItemView({
+					model: item
+				});
+				this.$el.append(view.$el);
 			});
-			this.$el.append(view.$el);
+			this.collection.fetch();
 		},
 		addItem: function (values) {
 			this.collection.create(values, {wait: true});
