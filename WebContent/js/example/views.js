@@ -1,7 +1,7 @@
-define(["jquery", "backbone", "transparency"], function ($, Backbone) {
+define(["jquery", "backbone", "transparency"], function ($, Backbone, Transparency) {
 	"use strict";
 
-	jQuery.fn.render = Transparency.jQueryPlugin;
+	$.fn.render = Transparency.jQueryPlugin;
 
 	var EditorView =  Backbone.View.extend({
 		el: "#edit-form",
