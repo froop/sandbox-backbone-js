@@ -48,7 +48,8 @@ define(["jquery", "backbone", "transparency"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			this.$el.empty().append($("#item-template > *").clone());
+			var $template = $("#item-template > *").clone();
+			this.$el.empty().append($template);
 			this.$el.render({
 				text1: this.model.get("text1")
 			});
