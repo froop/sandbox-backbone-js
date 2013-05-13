@@ -27,10 +27,9 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			this.$el.render({
-				text1: this.model.get("text1"),
-				count: this.count
-			});
+			var data = this.model.toJSON();
+			data.count = this.count;
+			this.$el.render(data);
 			return this;
 		},
 		clear: function () {
