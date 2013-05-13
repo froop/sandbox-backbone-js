@@ -1,5 +1,7 @@
-define(["jquery", "backbone", "jquery.clonetemplate"], function ($, Backbone) {
+define(["jquery", "backbone", "transparency"], function ($, Backbone) {
 	"use strict";
+
+	jQuery.fn.render = Transparency.jQueryPlugin;
 
 	var EditorView =  Backbone.View.extend({
 		el: "#edit-form",
@@ -46,9 +48,10 @@ define(["jquery", "backbone", "jquery.clonetemplate"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			this.$el.empty().append($("#item-template > *").cloneTemplate({
+			this.$el.empty().append($("#item-template > *").clone());
+			this.$el.render({
 				text1: this.model.get("text1")
-			}));
+			});
 			return this;
 		}
 	});

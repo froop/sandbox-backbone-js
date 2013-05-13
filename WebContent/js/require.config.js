@@ -4,7 +4,7 @@ require.config({
 		underscore:					"js/lib/underscore",
 		backbone:					"js/lib/backbone",
 		"backbone.localStorage":	"js/lib/backbone.localStorage",
-		"jquery.clonetemplate":		"js/lib/jquery.clonetemplate"
+		transparency:				"js/lib/transparency"
 	},
 	shim: {
 		jquery: {
@@ -16,9 +16,6 @@ require.config({
 		backbone: {
 			deps: ["jquery", "underscore"],
 			exports: "Backbone"
-		},
-		"jquery.clonetemplate": {
-			deps: ["jquery"]
 		}
 	}
 });
