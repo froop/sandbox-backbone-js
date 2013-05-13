@@ -8,12 +8,12 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 				event.preventDefault();
 				this.$error.empty();
 				this.model.setText1(this.$text1.val());
+				this.$text1.focus();
 			}
 		},
 		initialize: function (options) {
 			this.count = 0;
 			this.$text1 = this.$("input[name=text1]");
-			this.$count = this.$("#count");
 			this.$error = this.$("#error");
 
 			this.listenTo(this.model, "change", function () {
@@ -27,8 +27,10 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			this.$text1.val(this.model.get("text1"));
-			this.$count.text(this.count);
+			this.$el.render({
+				text1: this.model.get("text1"),
+				count: this.count
+			});
 			return this;
 		},
 		clear: function () {
