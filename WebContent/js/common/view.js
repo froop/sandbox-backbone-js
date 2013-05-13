@@ -1,5 +1,5 @@
 define(["jquery", "transparency"], function ($, Transparency) {
 	"use strict";
 
-	$.fn.render = Transparency.jQueryPlugin;
+//	$.fn.render = Transparency.jQueryPlugin;
 });
