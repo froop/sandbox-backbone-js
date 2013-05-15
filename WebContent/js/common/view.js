@@ -1,5 +1,3 @@
-define(["jquery", "transparency"], function ($, Transparency) {
+define(["jquery", "jquery.domtmpl"], function ($) {
 	"use strict";
-
-//	$.fn.render = Transparency.jQueryPlugin;
 });

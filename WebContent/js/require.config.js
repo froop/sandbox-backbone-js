@@ -4,7 +4,7 @@ require.config({
 		underscore:					"js/lib/underscore",
 		backbone:					"js/lib/backbone",
 		"backbone.localStorage":	"js/lib/backbone.localStorage",
-		transparency:				"js/lib/transparency"
+		"jquery.domtmpl":			"js/lib/jquery.domtmpl"
 	},
 	shim: {
 		jquery: {
@@ -16,6 +16,9 @@ require.config({
 		backbone: {
 			deps: ["jquery", "underscore"],
 			exports: "Backbone"
+		},
+		"jquery.domtmpl": {
+			deps: ["jquery"],
 		}
 	}
 });

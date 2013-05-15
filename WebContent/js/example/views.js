@@ -29,7 +29,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 		render: function () {
 			var data = this.model.toJSON();
 			data.count = this.count;
-			this.$el.render(data);
+			this.$el.tmplBind(data);
 			return this;
 		},
 		clear: function () {
@@ -49,7 +49,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 		render: function () {
 			var $template = $("#item-template > *").clone();
 			this.$el.empty().append($template);
-			this.$el.render(this.model.toJSON());
+			this.$el.tmplBind(this.model.toJSON());
 			return this;
 		}
 	});
