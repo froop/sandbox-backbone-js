@@ -16,8 +16,8 @@ var JsonUtil = {};
 		return JSON.parse(JSON.stringify(source));
 	};
 
-	JsonUtil.alias = function (json, map) {
-		var res = JsonUtil.clone(json);
+	JsonUtil.alias = function (obj, map) {
+		var res = JsonUtil.clone(obj);
 		var key = "";
 
 		for (key in map) {
@@ -28,12 +28,12 @@ var JsonUtil = {};
 		return res;
 	};
 
-	JsonUtil.aliasList = function (jsonList, map) {
+	JsonUtil.aliasList = function (list, map) {
 		var res = [];
-		var idx, size = jsonList.length;
+		var idx, size = list.length;
 
 		for (idx = 0; idx < size; idx++) {
-			res[idx] = JsonUtil.alias(jsonList[idx], map);
+			res[idx] = JsonUtil.alias(list[idx], map);
 		}
 
 		return res;
