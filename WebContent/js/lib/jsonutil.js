@@ -8,6 +8,7 @@
 var JsonUtil = {};
 
 (function () {
+	"use strict";
 
 	/**
 	 * @returns deep copied object
@@ -21,7 +22,9 @@ var JsonUtil = {};
 		var key = "";
 
 		for (key in map) {
-			if (!res[key]) continue;
+			if (!res[key]) {
+				continue;
+			}
 			res[map[key]] = res[key];
 			delete res[key];
 		}
@@ -31,9 +34,9 @@ var JsonUtil = {};
 
 	JsonUtil.aliasList = function (list, map) {
 		var res = [];
-		var idx, size = list.length;
+		var idx, length = list.length;
 
-		for (idx = 0; idx < size; idx++) {
+		for (idx = 0; idx < length; idx++) {
 			res[idx] = JsonUtil.alias(list[idx], map);
 		}
 
