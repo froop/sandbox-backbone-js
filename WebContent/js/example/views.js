@@ -46,8 +46,8 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			var $item = $("#item-template > *").tmplClone(this.model.toJSON());
-			this.$el.empty().append($item);
+			var $item = $("#list1").tmplItem(this.model.toJSON());
+			this.$el.empty().append($item.find("> *"));
 			return this;
 		}
 	});
@@ -55,6 +55,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 	var ItemsView = Backbone.View.extend({
 		el: "#list1",
 		initialize: function () {
+			this.$el.tmplList([]);
 			this.listenTo(this.collection, "add", function (item) {
 				var view = new ItemView({
 					model: item
