@@ -47,9 +47,8 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.render();
 		},
 		render: function () {
-			var $template = $("#item-template > *").clone();
-			this.$el.empty().append($template);
-			this.$el.tmplBind(this.model.toJSON());
+			var $item = $("#item-template > *").tmplClone(this.model.toJSON());
+			this.$el.empty().append($item);
 			return this;
 		}
 	});
