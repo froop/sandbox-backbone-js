@@ -47,6 +47,7 @@
 	 * @returns {jQuery} for method chain
 	 */
 	$.fn.tmplBind = function (data, options) {
+		data = data || {};
 		var $elements = this;
 		var defaults = {
 			find: {},
@@ -130,6 +131,7 @@
 	 * @returns {jQuery} for method chain
 	 */
 	$.fn.tmplList = function (dataList, options) {
+		dataList = dataList || [];
 		this.each(function () {
 			var $elem = $(this);
 			setupListTmpl($elem);
@@ -148,6 +150,7 @@
 	 * @returns {jQuery} for method chain
 	 */
 	$.fn.tmplSelectOpts = function (dataList, options) {
+		dataList = dataList || [];
 		var $elements = this;
 		var defaults = {
 			canEmpty: false,
