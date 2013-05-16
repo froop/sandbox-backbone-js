@@ -40,7 +40,6 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 
 	var ItemView = Backbone.View.extend({
 		tagName: "li",
-		className: "item-content",
 		initialize: function () {
 //			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
