@@ -40,7 +40,6 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 
 	var ItemView = Backbone.View.extend({
 		initialize: function () {
-			this.setElement($("#list1").tmplItem({}));
 //			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.render();
@@ -57,6 +56,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.$el.tmplList([]);
 			this.listenTo(this.collection, "add", function (item) {
 				var view = new ItemView({
+					el: this.$el.tmplItem({}),
 					model: item
 				});
 				this.$el.append(view.$el);
