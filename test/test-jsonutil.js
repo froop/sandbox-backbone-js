@@ -49,4 +49,14 @@
 			alias2: "value2"
 		});
 	});
+
+	test("alias empty", function () {
+		var result = JsonUtil.alias({
+		},
+		{
+			prop1: "alias1"
+		});
+
+		deepEqual(result, {});
+	});
 })();

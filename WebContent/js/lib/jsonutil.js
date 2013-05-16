@@ -21,6 +21,7 @@ var JsonUtil = {};
 		var key = "";
 
 		for (key in map) {
+			if (!res[key]) continue;
 			res[map[key]] = res[key];
 			delete res[key];
 		}
