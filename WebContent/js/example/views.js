@@ -39,15 +39,14 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 	});
 
 	var ItemView = Backbone.View.extend({
-		tagName: "li",
 		initialize: function () {
+			this.setElement($("#list1").tmplItem({}));
 //			this.listenTo(this.model, "change", this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.render();
 		},
 		render: function () {
-			var $item = $("#list1").tmplItem(this.model.toJSON());
-			this.$el.empty().append($item.find("> *"));
+			this.$el.tmplBind(this.model.toJSON());
 			return this;
 		}
 	});
