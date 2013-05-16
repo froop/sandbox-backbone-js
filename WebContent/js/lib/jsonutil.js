@@ -18,11 +18,11 @@ var JsonUtil = {};
 
 	JsonUtil.alias = function (json, map) {
 		var res = JsonUtil.clone(json);
-		var i = "";
+		var key = "";
 
-		for (i in map) {
-			res[map[i]] = res[i];
-			delete res[i];
+		for (key in map) {
+			res[map[key]] = res[key];
+			delete res[key];
 		}
 
 		return res;
@@ -30,10 +30,10 @@ var JsonUtil = {};
 
 	JsonUtil.aliasList = function (jsonList, map) {
 		var res = [];
-		var i, size = jsonList.length;
+		var idx, size = jsonList.length;
 
-		for (i = 0; i < size; i++) {
-			res[i] = JsonUtil.alias(jsonList[i], map);
+		for (idx = 0; idx < size; idx++) {
+			res[idx] = JsonUtil.alias(jsonList[idx], map);
 		}
 
 		return res;
