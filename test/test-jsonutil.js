@@ -1,7 +1,11 @@
 (function () {
-	var JSON_DATA = {
+	var JSON_DATA1 = {
 		prop1: "value1",
 		prop2: "value2"
+	};
+	var JSON_DATA2 = {
+		prop1: "value1b",
+		prop2: "value2b"
 	};
 	module("JsonUtil", {
 		setup: function () {
@@ -9,7 +13,7 @@
 	});
 
 	test("alias frist", function () {
-		var result = JsonUtil.alias(JSON_DATA, {
+		var result = JsonUtil.alias(JSON_DATA1, {
 			prop1: "alias1"
 		});
 
@@ -20,7 +24,7 @@
 	});
 
 	test("alias last", function () {
-		var result = JsonUtil.alias(JSON_DATA, {
+		var result = JsonUtil.alias(JSON_DATA1, {
 			prop2: "alias2"
 		});
 
@@ -31,7 +35,7 @@
 	});
 
 	test("alias all", function () {
-		var result = JsonUtil.alias(JSON_DATA, {
+		var result = JsonUtil.alias(JSON_DATA1, {
 			prop1: "alias1",
 			prop2: "alias2"
 		});
@@ -51,7 +55,7 @@
 	});
 
 	test("alias not exists", function () {
-		var result = JsonUtil.alias(JSON_DATA, {
+		var result = JsonUtil.alias(JSON_DATA1, {
 			prop0: "alias0",
 			prop1: "alias1"
 		});
@@ -60,5 +64,19 @@
 			alias1: "value1",
 			prop2: "value2"
 		});
+	});
+
+	test("aliasList", function () {
+		var result = JsonUtil.aliasList([JSON_DATA1, JSON_DATA2], {
+			prop1: "alias1"
+		});
+
+		deepEqual(result, [{
+			alias1: "value1",
+			prop2: "value2"
+		}, {
+			alias1: "value1b",
+			prop2: "value2b"
+		}]);
 	});
 })();
