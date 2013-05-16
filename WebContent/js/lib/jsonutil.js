@@ -1,5 +1,5 @@
 /*
- * jsonutil.js
+ * jsonutil.js - JSON utilities.
  *
  * Created by froop http://github.com/froop/sandbox-backbone-js
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
