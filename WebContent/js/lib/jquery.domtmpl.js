@@ -10,16 +10,55 @@
 (function ($) {
 	"use strict";
 
-	function setValue($fields, value) {
-		$fields.filter("input,select").not(":checkbox,:radio").val(value);
+	/**
+	 * Bind value to Elements.
+	 * @param {*} value in String or Number or only checkbox can Boolean or Array
+	 * @returns {jQuery} for method chain
+	 */
+	$.fn.tmplBindValue = function (value) {
+		var $fields = this;
+		$fields.filter("input,select,textarea").not(":checkbox,:radio").val(value);
 		if (typeof value === "boolean") {
 			$fields.filter(":checkbox,:radio").prop("checked", value);
 		} else {
 			$fields.filter(":checkbox").val(value);
 			$fields.filter(":radio").val([value]);
 		}
-		$fields.not("input,select").text(value);
-	}
+		$fields.not("input,select,textarea").text(value);
+		return this;
+	};
+
+	/**
+	 * Element to value.
+	 * @param {*} template value type in String (<code>""</code>) or
+	 *                Number (<code>0</code>) or only checkbox can
+	 *                Boolean (<code>false</code>) or Array (<code>[]</code>)
+	 * @returns {Object} value
+	 */
+	$.fn.tmplUnbindValue = function (template) {
+		var $field = this;
+		if ($field.length > 1 && !$field.is(":checkbox,:radio")) {
+			throw new Error("[" +
+					($field.attr("name") || $field.attr("id") || $field.attr("class")) +
+					"] is length=" + $field.length);
+		}
+
+		if ($field.is(":checkbox,:radio")) {
+			if (typeof template === "boolean") {
+				return $field.prop("checked");
+			} else if ($.isArray(template)) {
+				return $field.filter(":checked").map(function () {
+					return $(this).val();
+				}).get();
+			} else {
+				return $field.filter(":checked").val();
+			}
+		} else if ($field.is("input,select,textarea")) {
+			return $field.val();
+		} else {
+			return $field.text();
+		}
+	};
 
 	function setupListTmpl($elem) {
 		var $tmpl = $elem.data("domtmpl");
@@ -40,6 +79,28 @@
 		wrap$().tmplBind(data, options);
 	}
 
+	function callIfFunction(target, argument) {
+		if ($.isPlainObject(target)) {
+			return null;
+		} else if ($.isFunction(target)) {
+			return target(argument);
+		} else {
+			return target;
+		}
+	}
+
+	function defaultFind(name) {
+		var selId = "#" + name;
+		var selClass = "." + name;
+		var selName = "[name=" + name + "]";
+		return [selId, selClass, selName].join(",");
+	}
+
+	function find$ByName($elements, name, selector) {
+		selector = callIfFunction(selector, $elements);
+		return $elements.find(selector || defaultFind(name));
+	}
+
 	/**
 	 * Bind data to DOM.
 	 * @param {Object} data JSON object
@@ -51,40 +112,81 @@
 		var $elements = this;
 		var defaults = {
 			find: {},
-			attr: {},
-			prop: {}
+			convertCallbacks: {},
+			bindCallback: function ($targets, value, name) {
+				$targets.tmplBindValue(value);
+			},
+			error: false // if element not exists then throw error.
 		};
 		var setting = $.extend(defaults, options);
 
-		function callIfFunction(target) {
-			if (typeof target === "function") {
-				return target($elements);
-			} else {
-				return target;
+		function bindValue($targets, name, value) {
+			var convertCallbacks = setting.convertCallbacks[name];
+			if (convertCallbacks) {
+				value = convertCallbacks(value);
 			}
+			setting.bindCallback($targets, value, name);
 		}
 
 		$.each(data, function (name, value) {
-			function defaultFind() {
-				var selId = "#" + name;
-				var selClass = "." + name;
-				var selName = "[name=" + name + "]";
-				return [selId, selClass, selName].join(",");
+			var $targets = find$ByName($elements, name, setting.find[name]);
+			if (setting.error && $targets.length === 0) {
+				throw new Error("tmplBind: not exists element [" + name + "]");
 			}
-			var find = callIfFunction(setting.find[name]);
-			var attr = callIfFunction(setting.attr[name]);
-			var prop = callIfFunction(setting.prop[name]);
-			var $target = $elements.find(find || defaultFind());
 
-			if (attr) {
-				$target.attr(attr, value);
-			} else if (prop) {
-				$target.prop(prop, value);
+			if ($.isPlainObject(value)) {
+				$targets.tmplBind(value, options);
 			} else {
-				setValue($target, value);
+				bindValue($targets, name, value);
 			}
 		});
 		return this;
+	};
+
+	/**
+	 * DOM to JSON.
+	 * @param {Object} template of JSON
+	 * @param {Object} options
+	 * @returns {Object} JSON
+	 */
+	$.fn.tmplUnbind = function (template, options) {
+		var $elements = this;
+		var defaults = {
+			find: {},
+			convertCallbacks: {},
+			unbindCallback: function ($target, template, name) {
+				return $target.tmplUnbindValue(template);
+			},
+			error: false // if element not exists then throw error.
+		};
+		var setting = $.extend(defaults, options);
+		var ret = {};
+
+		function unbindValue($target, name, template) {
+			var convertCallbacks = setting.convertCallbacks[name];
+			var value = setting.unbindCallback($target, template, name);
+			if (convertCallbacks) {
+				value = convertCallbacks($target.val());
+			}
+			if (typeof template === "number" && $.isNumeric(value)) {
+				value = Number(value);
+			}
+			return value;
+		}
+
+		$.each(template, function (name, value) {
+			var $target = find$ByName($elements, name, setting.find[name]);
+			if (setting.error && $target.length === 0) {
+				throw new Error("tmplUnbind: not exists element [" + name + "]");
+			}
+
+			if ($.isPlainObject(value)) {
+				ret[name] = $target.tmplUnbind(value);
+			} else {
+				ret[name] = unbindValue($target, name, value);
+			}
+		});
+		return ret;
 	};
 
 	/**
@@ -176,11 +278,14 @@
 					return isSelect($elem) ? "option" : "label";
 				}
 			},
-			attr: {
-				value: function () {
-					return "value";
+			bindCallback: function ($elem, value, name) {
+				if (name === "value") {
+					$elem.attr("value", value);
+				} else {
+					$elem.tmplBindValue(value);
 				}
-			}
+			},
+			error: true
 		});
 		return this;
 	};
