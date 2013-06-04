@@ -29,7 +29,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 		render: function () {
 			var data = this.model.toJSON();
 			data.count = this.count;
-			this.$el.tmplBind(data);
+			this.$el.tmplBind(data, {error: true});
 			return this;
 		},
 		clear: function () {
