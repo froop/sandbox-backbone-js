@@ -88,10 +88,11 @@ Backbone.js が依存している。関数型言語的なユーティリティ�
 JavaScript ファイルの依存関係を解決するローダー。
 JavaScript で多くを処理するようになると、依存関係が複雑化して管理が煩雑になるため。
 
-### (暫定) Transparency (https://github.com/leonidas/transparency)
 
-DOM 直接操作系 (テキストを介すのでなく) のテンプレートエンジン。
-選択理由は https://gist.github.com/froop/5492623 を参照。
+### jquery.domtmpl.js (https://github.com/froop/jquery-dom-tmpl)
+
+DOM 直接操作系 (テキストを介すのでなく) の自作テンプレートエンジン。
+自作した理由は https://gist.github.com/froop/5492623 を参照。
 
 
 単体テスト
