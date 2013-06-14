@@ -61,7 +61,6 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 				});
 				this.$el.append(view.$el);
 			});
-			this.collection.fetch();
 		},
 		clearItems: function () {
 			this.collection.clearAll();
@@ -86,6 +85,8 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 			this.listenTo(options.editor, "change", function () {
 				options.items.create(options.editor.toJSON(), {wait: true});
 			});
+
+			options.items.fetch();
 		}
 	});
 
