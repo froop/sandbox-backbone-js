@@ -61,9 +61,6 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 				});
 				this.$el.append(view.$el);
 			});
-		},
-		clearItems: function () {
-			this.collection.clearAll();
 		}
 	});
 
@@ -71,10 +68,11 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 		events: {
 			"click #clear": function () {
 				this.editorView.clear();
-				this.itemsView.clearItems();
+				this.items.clearAll();
 			}
 		},
 		initialize: function (options) {
+			this.items = options.items;
 			this.editorView = new EditorView({
 				model: options.editor
 			});
