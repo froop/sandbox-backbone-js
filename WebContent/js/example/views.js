@@ -65,6 +65,7 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 	});
 
 	var AppView = Backbone.View.extend({
+		el: "#example",
 		events: {
 			"click #clear": function () {
 				this.editorView.clear();
