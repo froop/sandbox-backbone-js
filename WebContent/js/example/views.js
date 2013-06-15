@@ -55,12 +55,15 @@ define(["jquery", "backbone", "js/common/view"], function ($, Backbone) {
 		initialize: function () {
 			this.$el.tmplList();
 			this.listenTo(this.collection, "add", function (item) {
-				var view = new ItemView({
-					el: this.$el.tmplItem(),
-					model: item
-				});
-				this.$el.append(view.$el);
+				this.append(item);
 			});
+		},
+		append: function (model) {
+			var view = new ItemView({
+				el: this.$el.tmplItem(),
+				model: model
+			});
+			this.$el.append(view.$el);
 		}
 	});
 
